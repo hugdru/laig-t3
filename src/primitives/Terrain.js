@@ -18,13 +18,13 @@ function Terrain(scene, texture, heightmap) {
   this.appearance.setTextureWrap('REPEAT', 'REPEAT');
 
   this.testShaders = [
-    new CGFshader(this.scene.gl, "../scenes/shaders/flat.vert", "../scenes/shaders/flat.frag"),
-    new CGFshader(this.scene.gl, "../scenes/shaders/myShader.vert", "../scenes/shaders/myShader.frag"),
-    new CGFshader(this.scene.gl, "../scenes/shaders/uScale.vert", "../scenes/shaders/uScale.frag"),
-    new CGFshader(this.scene.gl, "../scenes/shaders/varying.vert", "../scenes/shaders/varying.frag"),
-    new CGFshader(this.scene.gl, "../scenes/shaders/texture1.vert", "../scenes/shaders/texture1.frag"),
-    new CGFshader(this.scene.gl, "../scenes/shaders/texture2.vert", "../scenes/shaders/texture2.frag"),
-    new CGFshader(this.scene.gl, "../scenes/shaders/texture3.vert", "../scenes/shaders/texture3.frag")
+    new CGFshader(this.scene.gl, "shaders/flat.vert", "shaders/flat.frag"),
+    new CGFshader(this.scene.gl, "shaders/myShader.vert", "shaders/myShader.frag"),
+    new CGFshader(this.scene.gl, "shaders/uScale.vert", "shaders/uScale.frag"),
+    new CGFshader(this.scene.gl, "shaders/varying.vert", "shaders/varying.frag"),
+    new CGFshader(this.scene.gl, "shaders/texture1.vert", "shaders/texture1.frag"),
+    new CGFshader(this.scene.gl, "shaders/texture2.vert", "shaders/texture2.frag"),
+    new CGFshader(this.scene.gl, "shaders/texture3.vert", "shaders/texture3.frag")
   ];
 
   this.testShaders[1].setUniformsValues({
