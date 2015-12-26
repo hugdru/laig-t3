@@ -14,7 +14,7 @@ function SceneGraph(filename, scene) {
    * If any error occurs, the reader calls onXMLError on this object, with an error message
    */
 
-  this.reader.open('../scenes/' + filename, this);
+  this.reader.open('../../resources/' + filename, this);
 
   this.lsxParser = new LSXParser(this);
 }
@@ -51,7 +51,7 @@ SceneGraph.prototype.onXMLError = function(message) {
 };
 
 SceneGraph.prototype.display = function(node, inheritedMaterial, inheritedTexture) {
-  if (node instanceof Rectangle || node instanceof Cylinder || node instanceof Sphere || node instanceof Triangle || node instanceof NURBSPlane || node instanceof NURBSPatch || node instanceof Terrain || node instanceof Vehicle) {
+  if (node instanceof Tablut) {
     if (inheritedMaterial.texture instanceof CGFtexture) {
       node.setTextureAmplification(inheritedMaterial.texture.amplifFactor.s, inheritedMaterial.texture.amplifFactor.t);
     }
