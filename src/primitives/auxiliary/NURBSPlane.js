@@ -1,16 +1,6 @@
 function NURBSPlane(scene, parts) {
   this.parts = parts || 1;
 
-  //testing
-  this.testAppearance = new CGFappearance(scene);
-	this.testAppearance.setAmbient(0.3, 0.3, 0.3, 1);
-	this.testAppearance.setDiffuse(0.7, 0.7, 0.7, 1);
-	this.testAppearance.setSpecular(0.0, 0.0, 0.0, 1);
-	this.testAppearance.setShininess(120);
-	this.texture = new CGFtexture(scene, "../../scenes/texture.jpg");
-	this.testAppearance.setTexture(this.texture);
-	this.testAppearance.setTextureWrap ('REPEAT', 'REPEAT');
-
   this.surface = new CGFnurbsSurface(1,1,[0,0,1,1],[0,0,1,1],
       [
         [
