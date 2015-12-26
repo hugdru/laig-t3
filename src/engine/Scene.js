@@ -4,6 +4,7 @@ function Scene(cgfInterface) {
   CGFscene.call(this);
 
   this.cgfInterface = cgfInterface;
+  this.tablut = {};
 }
 
 Scene.prototype = Object.create(CGFscene.prototype);
@@ -20,6 +21,10 @@ Scene.prototype.init = function(application) {
   this.gl.enable(this.gl.DEPTH_TEST);
   this.gl.enable(this.gl.CULL_FACE);
   this.gl.depthFunc(this.gl.LEQUAL);
+
+  this.tablut = new Tablut(this);
+
+  this.setPickEnabled(true);
 };
 
 Scene.prototype.initLights = function() {
@@ -63,7 +68,7 @@ Scene.prototype.initLights = function() {
 };
 
 Scene.prototype.initCameras = function() {
-  this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(18, 18, 18), vec3.fromValues(0, 0, 0));
+  this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(4.5, 15, 28), vec3.fromValues(4.5, 0, 4.5));
 };
 
 Scene.prototype.updateLights = function() {
@@ -108,6 +113,9 @@ Scene.prototype.onGraphLoaded = function() {
 };
 
 Scene.prototype.display = function() {
+	this.logPicking();
+	this.clearPickRegistration();
+
   // ---- BEGIN Background, camera and axis setup
   this.setActiveShader(this.defaultShader);
 
@@ -150,4 +158,23 @@ Scene.prototype.display = function() {
     var root = this.graph.nodes.root;
     this.graph.display(root, root.material, root.material.texture);
   }
+
+  this.tablut.display();
+};
+
+Scene.prototype.logPicking = function ()
+{
+	if (this.pickMode === false) {
+		if (this.pickResults !== null && this.pickResults.length > 0) {
+			for (var i=0; i< this.pickResults.length; i++) {
+				var obj = this.pickResults[i][0];
+				if (obj)
+				{
+					var customId = this.pickResults[i][1];
+					console.log("Picked object: " + obj + ", with pick id " + customId);
+				}
+			}
+			this.pickResults.splice(0,this.pickResults.length);
+		}
+	}
 };
