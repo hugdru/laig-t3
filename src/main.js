@@ -42,19 +42,22 @@ function getUrlVars() {
   return vars;
 }
 
-serialInclude(['../lib/CGF.js', 'Scene.js', 'SceneGraph.js', 'Interface.js',
+serialInclude(['../lib/CGF.js', 'engine/Scene.js', 'engine/SceneGraph.js', 'engine/Interface.js',
               'parser/LSXParser.js', 'parser/LSXParserUtils.js',
               'parser/LSXParseInitials.js', 'parser/LSXParseIllumination.js',
               'parser/LSXParseLights.js', 'parser/LSXParseTextures.js',
               'parser/LSXParseMaterials.js', 'parser/LSXParseLeaves.js',
               'parser/LSXParseNodes.js', 'parser/LSXParseAnimations.js',
               // Primitives
-              'primitives/Triangle.js', 'primitives/Rectangle.js',
-              'primitives/Sphere.js', 'primitives/Cylinder.js',
-              'primitives/NURBSPlane.js', 'primitives/NURBSPatch.js',
-              'primitives/Terrain.js', 'primitives/Vehicle.js',
-              'primitives/others/Base.js', 'primitives/others/LateralFaces.js',
-              'primitives/others/Plane.js',
+              'primitives/auxiliary/Sphere.js', 'primitives/auxiliary/Cylinder.js',
+              'primitives/auxiliary/NURBSPlane.js',
+              'primitives/auxiliary/MainBoard.js', 'primitives/auxiliary/Cube.js',
+              'primitives/auxiliary/King.js', 'primitives/auxiliary/Pawn.js',
+              'primitives/auxiliary/Muscovite.js',
+              'primitives/auxiliary/Swedish.js',
+              'primitives/auxiliary/Base.js',
+              'primitives/auxiliary/LateralFaces.js',
+              'primitives/Tablut.js',
               // Animations
               'animations/Animation.js', 'animations/LinearAnimation.js',
               'animations/CircularAnimation.js',
@@ -75,7 +78,7 @@ serialInclude(['../lib/CGF.js', 'Scene.js', 'SceneGraph.js', 'Interface.js',
     // get file name provided in URL, e.g. http://localhost/myproj/?file=myfile.xml
     // or use "demo.xml" as default (assumes files in subfolder "scenes", check MySceneGraph constructor)
 
-    var filename = getUrlVars()['file'] || "test_file.xml";
+    var filename = getUrlVars()['file'] || "tablut.xml";
 
     // create and load graph, and associate it to scene.
     // Check console for loading errors
