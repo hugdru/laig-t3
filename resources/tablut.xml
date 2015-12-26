@@ -1,0 +1,57 @@
+<SCENE>
+  <INITIALS>
+    <frustum near="0.1" far="150" />
+    <translation x="0" y="0" z="0" />
+    <rotation axis="x" angle="0" />
+    <rotation axis="y" angle="0" />
+    <rotation axis="z" angle="0" />
+    <scale sx="1" sy="1" sz="1" />
+    <reference length="5" />
+  </INITIALS>
+  <ILLUMINATION>
+    <ambient r="0" g="0" b="0" a="1" />
+    <background r="0" g="0.5" b="0" a="1" />
+  </ILLUMINATION>
+  <LIGHTS>
+    <LIGHT id="light1">
+      <enable value="1" />
+      <position x="3" y="3" z="3" w="1" />
+      <ambient r="0.1" g="0.1" b="0.1" a="1" />
+      <diffuse r="1" g="1" b="1" a="1" />
+      <specular r="0.5" g="0.5" b="0.5" a="1" />
+    </LIGHT>
+    <LIGHT id="light2">
+      <enable value="0" />
+      <position x="10" y="10" z="10" w="1" />
+      <ambient r="0.2" g="0.2" b="0.2" a="1" />
+      <diffuse r="0.5" g="0.5" b="0.5" a="1" />
+      <specular r="0.3" g="0.3" b="0.3" a="1" />
+    </LIGHT>
+  </LIGHTS>
+  <TEXTURES>
+  </TEXTURES>
+  <MATERIALS>
+    <MATERIAL id="default">
+      <shininess value="5" />
+      <specular r="0.3" g="0.3" b="0.3" a="1" />
+      <diffuse r="0.3" g="0.3" b="0.3" a="1" />
+      <ambient r="0.3" g="0.3" b="0.3" a="1" />
+      <emission r="0.1" g="0.1" b="0.1" a="1" />
+    </MATERIAL>
+  </MATERIALS>
+  <LEAVES>
+    <LEAF id="leaf" type="sphere" args="0.01 20 20" />
+  </LEAVES>
+  <animations>
+  </animations>
+  <NODES>
+    <ROOT id="scene" />
+    <NODE id="scene">
+      <MATERIAL id="default" />
+      <TEXTURE id="null" />
+      <DESCENDANTS>
+        <DESCENDANT id="leaf" />
+      </DESCENDANTS>
+    </NODE>
+  </NODES>
+</SCENE>
