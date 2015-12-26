@@ -18,6 +18,37 @@ Interface.prototype.processKeyboard = function(event) {
 
 Interface.prototype.initCreateLights = function() {
 
+  this.testTablutSettings = {
+    sweede: 'player',
+    muscovite: 'player',
+    dificulty: 'easy',
+    start: function() {}
+  };
+
+  var tablutGroup = this.gui.addFolder('Tablut');
+  tablutGroup.open();
+
+  playerAI = ['player', 'computer'];
+  dificulty = ['easy', 'medium', 'hard'];
+  tablutGroup.add(this.testTablutSettings, 'sweede', playerAI);
+  tablutGroup.add(this.testTablutSettings, 'muscovite', playerAI);
+  tablutGroup.add(this.testTablutSettings, 'dificulty', dificulty);
+  tablutGroup.add(this.testTablutSettings, 'start');
+
+  this.testTablutActions = {
+    cameraAnimation: false,
+    undo: function() {}
+  };
+
+  var TablutActions = this.gui.addFolder('Actions');
+  TablutActions.open();
+
+  TablutActions.add(this.testTablutActions, 'cameraAnimation');
+  TablutActions.add(this.testTablutActions, 'undo');
+
+
+
+
   // Lights check boxes
   var lightsGroup = this.gui.addFolder('Lights');
   lightsGroup.open();
