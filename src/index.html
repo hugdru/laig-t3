@@ -1,29 +1,112 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html class="no-js" lang="en">
 
 <head lang="en">
-  <meta charset="UTF-8">
-  <title>CGFexample</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <style>
-    body,
-    html {
-      border: 0;
-      padding: 0;
-      margin: 0;
-      overflow: hidden;
-    }
+  <link rel="stylesheet" href="../resources/css/foundation.min.css" />
+  <link rel="stylesheet" href="../resources/css/app.css" />
 
-    canvas {
-      width: 100%;
-      height: 100%;
-    }
-  </style>
+  <title>Tablut</title>
 </head>
 
 <body>
 
-  <script src="main.js"></script>
+  <div id="sticky-nav">
+    <ul class="vertical medium-vertical menu">
+      <li><a href="#tablut">Tablut</a></li>
+      <li><a href="#regras">Regras</a></li>
+      <li><a href="#grupo">Grupo</a></li>
+    </ul>
+  </div>
+
+  <div class="row text-center">
+
+    <div class="large-12 columns">
+    <h1>FEUP</h1>
+    <h2>Mestrado Integrado em Engenharia Informática e Computação</h2>
+      <div class="row">
+        <div class="large-4 columns">
+          <h4>Tablut</h4></div>
+        <div class="large-4 columns">
+          <h4>LAIG 2015/2016</h4></div>
+        <div class="large-4 columns">
+          <h4>Turma 6 Grupo 7</h4></div>
+      </div>
+    </div>
+
+    <div class="callout large-12 columns" id="grupo">
+      <p>João Alexandre Gonçalinho Loureiro - ei08101@fe.up.pt</p>
+      <p>Hugo Ari Rodrigues Drumond - hugo.drumond@fe.up.pt</p>
+    </div>
+
+    <div class="large-12 columns" id="tablut">
+      <a class="large button" href="game.html">Play Tablut</a>
+    </div>
+
+    <div class="large-12 columns" id="regras">
+      <ul class="accordion" data-accordion role="tablist" data-multi-expand="true" data-allow-all-closed="true">
+        <li class="accordion-item">
+          <a href="#origin" role="tab" class="accordion-title" id="origin-heading" aria-controls="origin">Origin</a>
+          <div id="origin" class="accordion-content" role="tabpanel" data-tab-content aria-labelledby="origin-heading">
+            <p>
+              Tablut is a Tafl-game from Laponia, and was described in 18th century by the Swede botanist Lineo. Tafl is a group of games from North of Europe that represent battles between two unequal forces; this characteristic distinguishes this game family from other board war games. The differences between both sides are the number and properties of their pieces and the goal of the game. The largest force (Moscowians) has to surround the smaller force (Swedes), who has a special piece, the king. Due to the historical origin of the game there are some uncertain details about the rules. Apparently, the description made by Lineo was not clear enough. The main difference between the descriptions of the rules that we have found is given by the objective that the Swede king must get to win the game. In the version offered by Ludoteka.com the king must reach one of the four corners of the table; it´s one of the more accepted versions and it seems that chances of victory for both sides are quite balanced. In other versions the king only has to reach any of the edges of the table, which seems to be too easy.
+            </p>
+          </div>
+        </li>
+        <li class="accordion-item is-active">
+          <a href="#description" role="tab" class="accordion-title" id="description-heading" aria-controls="description">Description</a>
+          <div id="description" class="accordion-content" role="tabpanel" data-tab-content aria-labelledby="description-heading">
+            <p>
+              The game is played on a 9x9 board. The central square is different from the others: it is called Konakis or throne, the Swede king stands there at the start of the game, and he is the only one who can occupy this position. The player that starts the game plays with light pieces (swedes): his King, in the center of the board, and eight soldiers to protect him. The other player starts the game with 16 dark pieces, the Moscowians, placed in the external squares of the board.
+            </p>
+            <img src="http://www.ludoteka.com/tabltab.gif" alt="board">
+          </div>
+        </li>
+        <li class="accordion-item is-active">
+          <a href="#objective" role="tab" class="accordion-title" id="objective-heading" aria-controls="objective">Objective</a>
+          <div id="objective" class="accordion-content" role="tabpanel" data-tab-content aria-labelledby="objective-heading">
+            <p>
+              The objectives are different for each of the forces:
+            </p>
+            <ol>
+              <li>Moscowians have to capture the Swede King, and anyway they have to stop him from escaping to survive</li>
+              <li>The Swedes win the game if their King reaches any of the corner squares</li>
+            </ol>
+          </div>
+        </li>
+        <li class="accordion-item is-active">
+          <a href="#moves" role="tab" class="accordion-title" id="moves-heading" aria-controls="moves">Moves</a>
+          <div id="moves" class="accordion-content" role="tabpanel" data-tab-content aria-labelledby="moves-heading">
+            <p>
+              Players move alternatively, one piece by turn; swedes move first. All the pieces are moved in the same way, included the King: any number of vacant squares, vertically or horizontally (like the rook in chess) The soldiers may cross over the throne, but only the King can stand there.
+            </p>
+          </div>
+        </li>
+        <li class="accordion-item is-active">
+          <a href="#capturing" role="tab" class="accordion-title" id="capturing-heading" aria-controls="capturing">Capturing</a>
+          <div id="capturing" class="accordion-content" role="tabpanel" data-tab-content aria-labelledby="capturing-heading">
+            <p>Both forces can capture opponent pieces. A piece is captured when the opponent outflanks it occuping both adjacent squares in a row or column. A piece is also captured outflanking it between an opponent piece and a corner square. Captures are only made when the capturing force moves, so a piece may be placed safely between two opponent pieces. Captured pieces are taken outside of the board. When the moved piece causes a new position where more than one piece (two or three) are outflanked, all of them are captured. The capture of the King is especial: the four adjacent squares (vertical and horizontal) must be occupied by opponent pieces; if one of those squares is the Konakis or the king is placed in the edge of the board, only the other three squares must be occupied. The King may also be captured by surrounding it between two opponents, a corner square and the edge of the board.</p>
+          </div>
+        </li>
+        <li class="accordion-item is-active">
+          <a href="#final" role="tab" class="accordion-title" id="final-heading" aria-controls="final">Final</a>
+          <div id="final" class="accordion-content" role="tabpanel" data-tab-content aria-labelledby="final-heading">
+            <p>The capture of the King gives the victory to Moscowians. The Swedes win when the King reaches one of the corner squares. When after a move the King has an open route to one of the corner squares, the player has to let the opponent know by saying Raichi!. If there are two open routes the player can say Tuichi!, because it´s not possible to close both routes in one only move.</p>
+          </div>
+        </li>
+      </ul>
+      <p>Rules From<a href="http://www.ludoteka.com/tablut-en.html"><cite>ludoteka</cite></a></p>
+    </div>
+
+  </div>
+
+  <script src="../resources/javascript/vendor/jquery.min.js"></script>
+  <script src="../resources/javascript/vendor/what-input.min.js"></script>
+  <script src="../resources/javascript/foundation.min.js"></script>
+  <script src="../resources/javascript/app.js"></script>
 
 </body>
 
