@@ -42,7 +42,7 @@ function getUrlVars() {
   return vars;
 }
 
-serialInclude(['../lib/CGF.js', 'engine/Scene.js', 'engine/SceneGraph.js', 'engine/Interface.js',
+serialInclude(['../lib/CGF.js', 'engine/Scene.js', 'engine/SceneGraph.js', 'interface/Interface.js',
               'parser/LSXParser.js', 'parser/LSXParserUtils.js',
               'parser/LSXParseInitials.js', 'parser/LSXParseIllumination.js',
               'parser/LSXParseLights.js', 'parser/LSXParseTextures.js',
