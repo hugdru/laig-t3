@@ -22,9 +22,9 @@
     </LIGHT>
   </LIGHTS>
   <TABLUT>
-    <SWEDE texture="darkWood" material="darkWood" />
-    <MUSCOVITE texture="darkWood" material= "darkWood"/>
-    <KING texture="darkWood" material="darkWood" />
+    <SWEDE texture="darkWood" material="white" />
+    <MUSCOVITE texture="darkWood" material= "black"/>
+    <KING texture="darkWood" material="white" />
     <EXIT texture="darkWood" material="darkWood" />
     <THRONE texture="darkWood" material="darkWood" />
     <SWEDECELL texture="darkWood" material="darkWood" />
@@ -52,6 +52,20 @@
       <diffuse r="0.4" g="0.2" b="0" a="1" />
       <ambient r="0.4" g="0.2" b="0" a="1" />
       <emission r="0.1" g="0.1" b="0.1" a="1" />
+    </MATERIAL>
+    <MATERIAL id="white">
+      <shininess value="5" />
+      <specular r="1" g="1" b="1" a="1" />
+      <diffuse r="1" g="1" b="1" a="1" />
+      <ambient r="1" g="1" b="1" a="1" />
+      <emission r="1" g="1" b="1" a="1" />
+    </MATERIAL>
+    <MATERIAL id="black">
+      <shininess value="5" />
+      <specular r="0" g="0" b="0" a="1" />
+      <diffuse r="0" g="0" b="0" a="1" />
+      <ambient r="0" g="0" b="0" a="1" />
+      <emission r="0" g="0" b="0" a="1" />
     </MATERIAL>
   </MATERIALS>
   <LEAVES>
