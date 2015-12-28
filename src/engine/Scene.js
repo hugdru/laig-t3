@@ -5,6 +5,7 @@ function Scene(cgfInterface) {
 
   this.cgfInterface = cgfInterface;
   this.tablut = {};
+  this.rules = new Rules();
 
   this.lastPick = null;
 }
@@ -171,11 +172,25 @@ Scene.prototype.logPicking = function() {
 				var obj = this.pickResults[i][0];
 				if (obj)
 				{
+					        console.log("getAvailableMoves,");
+	        console.log(this.rules.getAvailableMoves(obj.x,obj.y));
 					var customId = this.pickResults[i][1];
 					console.log("Picked object: " + obj + ", with pick id " + customId);
           if ((this.lastPick instanceof King || this.lastPick instanceof Pawn) && obj instanceof Cell) {
-            this.lastPick.x = obj.x;
-            this.lastPick.y = obj.y;
+            
+	    
+	    var rulesValid = this.rules.commit({x: this.lastPick.x, y:this.lastPick.y}, {x: obj.x, y: obj.y});
+	    if (rulesValid) {
+
+		    this.lastPick.x = obj.x;
+		    this.lastPick.y = obj.y;
+		    console.log("result,");
+		    console.log(rulesValid);
+	    } else {
+		console.log("BAD MOVE");
+		this.lastPick = null;
+	    }
+
           }
 				}
         this.lastPick = obj;

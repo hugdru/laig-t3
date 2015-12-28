@@ -67,10 +67,10 @@ Rules.prototype.getAvailableMoves = function(x, y) {
 	}
 
 	var moves = [];
-  if (!this.getAvailableLineMoves('h', '+', moves)) return false;
-  if (!this.getAvailableLineMoves('h', '-', moves)) return false;
-  if (!this.getAvailableLineMoves('v', '+', moves)) return false;
-  if (!this.getAvailableLineMoves('v', '-', moves)) return false;
+  if (!this.getAvailableLineMoves(position, 'h', '+', moves)) return false;
+  if (!this.getAvailableLineMoves(position, 'h', '-', moves)) return false;
+  if (!this.getAvailableLineMoves(position, 'v', '+', moves)) return false;
+  if (!this.getAvailableLineMoves(position, 'v', '-', moves)) return false;
 
 	return moves;
 };
@@ -110,10 +110,10 @@ Rules.prototype.commit = function(currentPosition, nextPosition) {
   var pieceAtNextPosition = this.board[nextPosition.y][nextPosition.x];
 
   // Check if it is the turn of this piece
-  if (!this.checkTurn) {
+  if (!this.checkTurn(pieceAtCurrentPosition)) {
     return false;
   }
-
+  
   var incX = 0;
   var incY = 0;
   
@@ -136,7 +136,7 @@ Rules.prototype.commit = function(currentPosition, nextPosition) {
     if (this.board[posY][posX]) {
       return false;
     }
-  } while (posX !== nextPosition.x && posY !== nextPosition.y);
+  } while (posX !== nextPosition.x || posY !== nextPosition.y);
 
   var buildingsAtRow = this.buildings[nextPosition.y];
 
@@ -156,12 +156,15 @@ Rules.prototype.commit = function(currentPosition, nextPosition) {
   }
 
   var deleted = [];
-  if (!this.checkFlank("h", 1, deleted)) return false;
-  if (!this.checkFlank("h", -1, deleted)) return false;
-  if (!this.checkFlank("v", 1, deleted)) return false;
-  if (!this.checkFlank("v", -1, deleted)) return false;
+  if (!this.checkFlank(nextPosition, "h", 1, deleted)) return false;
+  if (!this.checkFlank(nextPosition, "h", -1, deleted)) return false;
+  if (!this.checkFlank(nextPosition, "v", 1, deleted)) return false;
+  if (!this.checkFlank(nextPosition, "v", -1, deleted)) return false;
 
+  this.board[currentPosition.y][currentPosition.x] = "";
+  this.board[nextPosition.y][nextPosition.x] = pieceAtCurrentPosition;
   this.turn = (this.turn == this.S) ? this.M : this.S;
+  
   return {
     "won": this.won,
     "deleted": deleted
@@ -171,11 +174,11 @@ Rules.prototype.commit = function(currentPosition, nextPosition) {
 // Private Methods
 
 Rules.prototype.checkTurn = function(piece) {
-	return (pieceAtCurrentPosition === this.turn) || (this.turn === this.S && pieceAtNextPosition === this.K);
+	return (piece === this.turn) || (this.turn === this.S && piece === this.K);
 };
 
 Rules.prototype.isFriendly = function(piece) {
-  return (piece === this.turn || (piece === this.K && this.turn === this.S));
+  return (piece === this.turn || (this.turn === this.S && piece === this.K));
 };
 
 Rules.prototype.existsPiece = function(position) {
@@ -199,7 +202,7 @@ if (position.x < 0 || position.x >= this.boardColumnsLength ||
 return true;
 }
 
-Rules.prototype.checkFlank = function(line, forwardOrBackwards, deleted) {
+Rules.prototype.checkFlank = function(position, line, forwardOrBackwards, deleted) {
 
   if ((forwardOrBackwards !== 1 && forwardOrBackwards !== -1) || deleted.constructor !== Array) {
     return false;
@@ -216,13 +219,23 @@ Rules.prototype.checkFlank = function(line, forwardOrBackwards, deleted) {
       return false;
   }
 
-  var adjacentPiece = this.board[nextPosition.y + inc1y][nextPosition.x + inc1x];
+  var adjacentPiecePosition = {x: position.x + inc1x, y: position.y + inc1y};
+  if (!this.checkBoundaries(adjacentPiecePosition)) {
+    return true;
+  }
+  
+  var adjacentPiece = this.board[adjacentPiecePosition.y][adjacentPiecePosition.x];
   if (adjacentPiece && !this.isFriendly(adjacentPiece)) {
-    var inc2y = inc1y * 2; var inc2x = inc1x * 2;
-    var afterAdjacentPiece = this.board[nextPosition.y + inc2y][nextPosition.x + inc2x];
-    if (afterAdjacentPiece && (this.isFriendly(afterAdjacentPiece) || this.existsBuilding(afterAdjacentPiece))) {
-      this.board[nextPosition.y + inc1y][nextPosition.x + inc1x] = "";
-      deleted.push({x: nextPosition.x + inc1x, y: nextPosition.y + inc1y});
+    
+    var afterAdjacentPiecePosition = {x: position.x + inc1x * 2, y: position.y + inc1y * 2};
+    if (!this.checkBoundaries(afterAdjacentPiecePosition)) {
+        return true;
+    }
+    var afterAdjacentPiece = this.board[afterAdjacentPiecePosition.y][afterAdjacentPiecePosition.x];
+    
+    if ((afterAdjacentPiece && this.isFriendly(afterAdjacentPiece)) || this.existsBuilding(afterAdjacentPiecePosition)) {
+      this.board[adjacentPiecePosition.y][adjacentPiecePosition.x] = "";
+      deleted.push(adjacentPiecePosition);
       if (adjacentPiece === this.K) {
         this.won = this.MS;
       }
@@ -249,12 +262,12 @@ Rules.prototype.getAvailableLineMoves = function(position, line, side, moves) {
 			return false;
 	}
 
-	var pos = {x: position.x + inc1x, y: position.y + inc1y};
+	var incrementatedPosition = {x: position.x + inc1x, y: position.y + inc1y};
 	
-	while (this.checkBoundaries(pos) && !this.existsPieceOrBuilding(pos)) {		
-		moves.push(pos);
-		pos.x += incX;
-		pos.y += incY;
+	while (this.checkBoundaries(incrementatedPosition) && !this.existsPieceOrBuilding(incrementatedPosition)) {
+		moves.push({x:incrementatedPosition.x, y: incrementatedPosition.y});
+		incrementatedPosition.x += inc1x;
+		incrementatedPosition.y += inc1y;
 	};
 
 	return moves;
