@@ -3,7 +3,7 @@ function Tablut(scene) {
 
   this.scene = scene;
 
-  this.mainBoard = new MainBoard(scene);
+  this.mainBoard = new TablutBoard(scene);
 
   this.pieces = [];
 
@@ -18,22 +18,22 @@ function Tablut(scene) {
   this.pieces.push(new Swede(scene,4,5));
   this.pieces.push(new Swede(scene,4,6));
 
-  this.pieces.push(new Moscovite(scene,3,0));
-  this.pieces.push(new Moscovite(scene,4,0));
-  this.pieces.push(new Moscovite(scene,5,0));
-  this.pieces.push(new Moscovite(scene,4,1));
-  this.pieces.push(new Moscovite(scene,3,8));
-  this.pieces.push(new Moscovite(scene,4,8));
-  this.pieces.push(new Moscovite(scene,5,8));
-  this.pieces.push(new Moscovite(scene,4,7));
-  this.pieces.push(new Moscovite(scene,0,3));
-  this.pieces.push(new Moscovite(scene,0,4));
-  this.pieces.push(new Moscovite(scene,0,5));
-  this.pieces.push(new Moscovite(scene,1,4));
-  this.pieces.push(new Moscovite(scene,8,3));
-  this.pieces.push(new Moscovite(scene,8,4));
-  this.pieces.push(new Moscovite(scene,8,5));
-  this.pieces.push(new Moscovite(scene,7,4));
+  this.pieces.push(new Muscovite(scene,3,0));
+  this.pieces.push(new Muscovite(scene,4,0));
+  this.pieces.push(new Muscovite(scene,5,0));
+  this.pieces.push(new Muscovite(scene,4,1));
+  this.pieces.push(new Muscovite(scene,3,8));
+  this.pieces.push(new Muscovite(scene,4,8));
+  this.pieces.push(new Muscovite(scene,5,8));
+  this.pieces.push(new Muscovite(scene,4,7));
+  this.pieces.push(new Muscovite(scene,0,3));
+  this.pieces.push(new Muscovite(scene,0,4));
+  this.pieces.push(new Muscovite(scene,0,5));
+  this.pieces.push(new Muscovite(scene,1,4));
+  this.pieces.push(new Muscovite(scene,8,3));
+  this.pieces.push(new Muscovite(scene,8,4));
+  this.pieces.push(new Muscovite(scene,8,5));
+  this.pieces.push(new Muscovite(scene,7,4));
 }
 
 Tablut.prototype = Object.create(CGFobject.prototype);

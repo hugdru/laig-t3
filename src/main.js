@@ -51,7 +51,7 @@ serialInclude(['../lib/CGF.js', 'engine/Scene.js', 'engine/SceneGraph.js', 'inte
               // Primitives
               'primitives/auxiliary/Sphere.js', 'primitives/auxiliary/Cylinder.js',
               'primitives/auxiliary/NURBSPlane.js',
-              'primitives/auxiliary/MainBoard.js', 'primitives/auxiliary/Cube.js',
+              'primitives/auxiliary/TablutBoard.js', 'primitives/auxiliary/Cube.js',
               'primitives/auxiliary/King.js', 'primitives/auxiliary/Pawn.js',
               'primitives/auxiliary/Muscovite.js',
               'primitives/auxiliary/Swede.js',
@@ -60,6 +60,10 @@ serialInclude(['../lib/CGF.js', 'engine/Scene.js', 'engine/SceneGraph.js', 'inte
               'primitives/auxiliary/Rectangle.js',
               'primitives/auxiliary/LateralFaces.js',
               'primitives/auxiliary/Cell.js',
+              'primitives/auxiliary/ExitCell.js',
+              'primitives/auxiliary/ThroneCell.js',
+              'primitives/auxiliary/MuscoviteCell.js',
+              'primitives/auxiliary/SwedeCell.js',
               'primitives/Tablut.js',
               // Animations
               'animations/Animation.js', 'animations/LinearAnimation.js',

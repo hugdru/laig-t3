@@ -160,9 +160,10 @@ Scene.prototype.display = function() {
 
     var root = this.graph.nodes.root;
     this.graph.display(root, root.material, root.material.texture);
+
+    this.tablut.display();
   }
 
-  this.tablut.display();
 };
 
 Scene.prototype.logPicking = function() {
