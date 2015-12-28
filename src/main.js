@@ -47,8 +47,7 @@ serialInclude(['../lib/CGF.js', 'engine/Scene.js', 'engine/SceneGraph.js', 'inte
               'parser/LSXParseInitials.js', 'parser/LSXParseIllumination.js',
               'parser/LSXParseLights.js', 'parser/LSXParseTextures.js',
               'parser/LSXParseMaterials.js', 'parser/LSXParseLeaves.js',
-              'parser/LSXParseNodes.js', 'parser/LSXParseAnimations.js',
-              'parser/LSXParseTablut.js',
+              'parser/LSXParseNodes.js', 'parser/LSXParseTablut.js',
               // Primitives
               'primitives/auxiliary/Sphere.js', 'primitives/auxiliary/Cylinder.js',
               'primitives/auxiliary/NURBSPlane.js',
@@ -65,6 +64,8 @@ serialInclude(['../lib/CGF.js', 'engine/Scene.js', 'engine/SceneGraph.js', 'inte
               // Animations
               'animations/Animation.js', 'animations/LinearAnimation.js',
               'animations/CircularAnimation.js',
+	      // Rules
+	      'rules/Rules.js',
 
   main = function() {
     // Standard application, scene and interface setup
