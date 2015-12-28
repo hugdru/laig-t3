@@ -54,7 +54,7 @@ serialInclude(['../lib/CGF.js', 'engine/Scene.js', 'engine/SceneGraph.js', 'inte
               'primitives/auxiliary/MainBoard.js', 'primitives/auxiliary/Cube.js',
               'primitives/auxiliary/King.js', 'primitives/auxiliary/Pawn.js',
               'primitives/auxiliary/Muscovite.js',
-              'primitives/auxiliary/Swedish.js',
+              'primitives/auxiliary/Swede.js',
               'primitives/auxiliary/Base.js',
               'primitives/auxiliary/LateralFaces.js',
               'primitives/Tablut.js',

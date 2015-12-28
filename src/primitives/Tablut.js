@@ -9,14 +9,14 @@ function Tablut(scene) {
 
   this.pieces.push(new King(scene,4,4));
 
-  this.pieces.push(new Swedish(scene,2,4));
-  this.pieces.push(new Swedish(scene,3,4));
-  this.pieces.push(new Swedish(scene,5,4));
-  this.pieces.push(new Swedish(scene,6,4));
-  this.pieces.push(new Swedish(scene,4,2));
-  this.pieces.push(new Swedish(scene,4,3));
-  this.pieces.push(new Swedish(scene,4,5));
-  this.pieces.push(new Swedish(scene,4,6));
+  this.pieces.push(new Swede(scene,2,4));
+  this.pieces.push(new Swede(scene,3,4));
+  this.pieces.push(new Swede(scene,5,4));
+  this.pieces.push(new Swede(scene,6,4));
+  this.pieces.push(new Swede(scene,4,2));
+  this.pieces.push(new Swede(scene,4,3));
+  this.pieces.push(new Swede(scene,4,5));
+  this.pieces.push(new Swede(scene,4,6));
 
   this.pieces.push(new Moscovite(scene,3,0));
   this.pieces.push(new Moscovite(scene,4,0));
