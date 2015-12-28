@@ -22,20 +22,24 @@
     </LIGHT>
   </LIGHTS>
   <TABLUT>
-    <SWEDE texture="darkWood" material="white" />
-    <MUSCOVITE texture="darkWood" material= "black"/>
-    <KING texture="darkWood" material="white" />
-    <EXIT texture="darkWood" material="darkWood" />
-    <THRONE texture="darkWood" material="darkWood" />
-    <SWEDECELL texture="darkWood" material="darkWood" />
-    <MUSCOVITECELL texture="darkWood" material="darkWood" />
-    <CELLS texture="darkWood" material="darkWood" />
-    <FRAME texture="darkWood" material="darkWood" />
+    <SWEDE texture="metal" material="white" />
+    <MUSCOVITE texture="metal" material= "black"/>
+    <KING texture="metal" material="white" />
+    <EXIT texture="metal" material="darkWood" />
+    <THRONE texture="metal" material="darkWood" />
+    <SWEDECELL texture="metal" material="darkWood" />
+    <MUSCOVITECELL texture="metal" material="darkWood" />
+    <CELLS texture="paleStone" material="darkWood" />
+    <FRAME texture="metal" material="white" />
   </TABLUT>
   <TEXTURES>
-    <TEXTURE id="darkWood">
-      <file path="textures/darkWood.png" />
+    <TEXTURE id="paleStone">
+      <file path="textures/paleStone.png" />
       <amplif_factor s="1" t="1" />
+    </TEXTURE>
+    <TEXTURE id="metal">
+      <file path="textures/metal.png" />
+      <amplif_factor s="0.1" t="0.1" />
     </TEXTURE>
   </TEXTURES>
   <MATERIALS>
