@@ -57,7 +57,7 @@ LSXParser.prototype.parseTablut = function(rootElement) {
       return entityError + 'texture must have a valid id.';
     }
 
-    if (this.graph.textures.hasOwnProperty(materialId)) {
+    if (this.graph.materials.hasOwnProperty(materialId)) {
       tablutObject.material = this.graph.materials[materialId];
     } else {
       return entityError + 'material must have a valid id.';
