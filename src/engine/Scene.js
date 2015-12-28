@@ -68,7 +68,7 @@ Scene.prototype.initLights = function() {
 };
 
 Scene.prototype.initCameras = function() {
-  this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(4.5, 15, 28), vec3.fromValues(4.5, 0, 4.5));
+  this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(4.5, 25, 10), vec3.fromValues(4.5, 0, 4.5));
 };
 
 Scene.prototype.updateLights = function() {
