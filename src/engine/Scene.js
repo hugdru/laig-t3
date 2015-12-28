@@ -183,7 +183,7 @@ Scene.prototype.logPicking = function() {
               this.lastPick.y = obj.y;
               console.log("result,");
               console.log(rulesValid);
-              if (rulesValid.deleted.length > 0) {
+              if (rulesValid.deleted && rulesValid.deleted.length > 0) {
                 for (var piece in rulesValid.deleted) {
                   this.tablut.deletePiece(rulesValid.deleted[piece].x, rulesValid.deleted[piece].y);
                 }
