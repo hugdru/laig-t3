@@ -6,6 +6,8 @@ Swede.prototype = Object.create(Pawn.prototype);
 Swede.prototype.constructor = Swede;
 
 Swede.prototype.display = function() {
+  this.setTextureAmplification(this.scene.graph.tablut.swede.texture.amplifFactor.s, this.scene.graph.tablut.swede.texture.amplifFactor.t);
+
   this.scene.graph.tablut.swede.material.apply();
   this.scene.graph.tablut.swede.texture.bind();
 

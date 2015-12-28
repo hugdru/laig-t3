@@ -13,5 +13,5 @@ Pawn.prototype = Object.create(CGFobject.prototype);
 Pawn.prototype.constructor = Pawn;
 
 Pawn.prototype.setTextureAmplification = function(amplifS, amplifT) {
-  this.cell.setTextureAmplification(amplifS, amplifT);
+  this.cylinder.setTextureAmplification(amplifS, amplifT);
 };
