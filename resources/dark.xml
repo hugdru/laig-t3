@@ -22,24 +22,56 @@
     </LIGHT>
   </LIGHTS>
   <TABLUT>
-    <SWEDE texture="metal" material="white" />
-    <MUSCOVITE texture="metal" material= "black"/>
-    <KING texture="metal" material="white" />
-    <EXIT texture="metal" material="darkWood" />
-    <THRONE texture="metal" material="darkWood" />
-    <SWEDECELL texture="metal" material="darkWood" />
-    <MUSCOVITECELL texture="metal" material="darkWood" />
-    <CELLS texture="paleStone" material="darkWood" />
-    <FRAME texture="metal" material="white" />
+    <SWEDE texture="sweede" material="white" />
+    <MUSCOVITE texture="muscovite" material= "white"/>
+    <KING texture="king" material="white" />
+    <EXIT texture="exit" material="darkBrown" />
+    <THRONE texture="throne" material="default" />
+    <SWEDECELL texture="swedeCell" material="red" />
+    <MUSCOVITECELL texture="muscoviteCell" material="darkBrown" />
+    <CELLS texture="cells" material="darkBrown" />
+    <FRAME texture="frame" material="white" />
   </TABLUT>
   <TEXTURES>
     <TEXTURE id="paleStone">
       <file path="textures/paleStone.png" />
       <amplif_factor s="1" t="1" />
     </TEXTURE>
-    <TEXTURE id="metal">
+    <TEXTURE id="throne">
+      <file path="textures/strongMetalCell.jpg" />
+      <amplif_factor s="1" t="1" />
+    </TEXTURE>
+    <TEXTURE id="exit">
+      <file path="textures/strongCell.png" />
+      <amplif_factor s="1" t="1" />
+    </TEXTURE>
+    <TEXTURE id="cells">
+      <file path="textures/simpleCell.jpg" />
+      <amplif_factor s="1" t="1" />
+    </TEXTURE>
+    <TEXTURE id="muscoviteCell">
+      <file path="textures/cartonCell.jpg" />
+      <amplif_factor s="1" t="1" />
+    </TEXTURE>
+    <TEXTURE id="swedeCell">
+      <file path="textures/hammerCell.png" />
+      <amplif_factor s="1" t="1" />
+    </TEXTURE>
+    <TEXTURE id="king">
+      <file path="textures/smooth.jpg" />
+      <amplif_factor s="1" t="1" />
+    </TEXTURE>
+    <TEXTURE id="sweede">
       <file path="textures/metal.png" />
-      <amplif_factor s="0.1" t="0.1" />
+      <amplif_factor s="1" t="1" />
+    </TEXTURE>
+    <TEXTURE id="muscovite">
+      <file path="textures/strange.png" />
+      <amplif_factor s="1" t="1" />
+    </TEXTURE>
+    <TEXTURE id="frame">
+      <file path="textures/brightCell.jpg" />
+      <amplif_factor s="1" t="1" />
     </TEXTURE>
   </TEXTURES>
   <MATERIALS>
@@ -50,7 +82,7 @@
       <ambient r="0.3" g="0.3" b="0.3" a="1" />
       <emission r="0.1" g="0.1" b="0.1" a="1" />
     </MATERIAL>
-    <MATERIAL id="darkWood">
+    <MATERIAL id="darkBrown">
       <shininess value="5" />
       <specular r="0.4" g="0.2" b="0" a="1" />
       <diffuse r="0.4" g="0.2" b="0" a="1" />
@@ -64,12 +96,12 @@
       <ambient r="1" g="1" b="1" a="1" />
       <emission r="1" g="1" b="1" a="1" />
     </MATERIAL>
-    <MATERIAL id="black">
+    <MATERIAL id="red">
       <shininess value="5" />
-      <specular r="0" g="0" b="0" a="1" />
-      <diffuse r="0" g="0" b="0" a="1" />
-      <ambient r="0" g="0" b="0" a="1" />
-      <emission r="0" g="0" b="0" a="1" />
+      <specular r="0.8" g="0.2" b="0" a="1" />
+      <diffuse r="0.8" g="0.2" b="0" a="1" />
+      <ambient r="0.8" g="0.2" b="0" a="1" />
+      <emission r="0.1" g="0.1" b="0.1" a="1" />
     </MATERIAL>
   </MATERIALS>
   <LEAVES>
