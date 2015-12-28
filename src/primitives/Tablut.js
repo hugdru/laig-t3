@@ -48,6 +48,14 @@ Tablut.prototype.display = function() {
   this.mainBoard.display();
 };
 
+Tablut.prototype.deletePiece = function(x, y) {
+  for (var i=0; i<this.pieces.length; i++) {
+    if (this.pieces[i].x === x && this.pieces[i].y === y) {
+      this.pieces.splice(i,1);
+    }
+  }
+};
+
 Tablut.prototype.setTextureAmplification = function(amplifS, amplifT) {
   this.cell.setTextureAmplification(amplifS, amplifT);
 };
