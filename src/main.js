@@ -48,6 +48,7 @@ serialInclude(['../lib/CGF.js', 'engine/Scene.js', 'engine/SceneGraph.js', 'inte
               'parser/LSXParseLights.js', 'parser/LSXParseTextures.js',
               'parser/LSXParseMaterials.js', 'parser/LSXParseLeaves.js',
               'parser/LSXParseNodes.js', 'parser/LSXParseAnimations.js',
+              'parser/LSXParseTablut.js',
               // Primitives
               'primitives/auxiliary/Sphere.js', 'primitives/auxiliary/Cylinder.js',
               'primitives/auxiliary/NURBSPlane.js',
@@ -56,6 +57,8 @@ serialInclude(['../lib/CGF.js', 'engine/Scene.js', 'engine/SceneGraph.js', 'inte
               'primitives/auxiliary/Muscovite.js',
               'primitives/auxiliary/Swedish.js',
               'primitives/auxiliary/Base.js',
+              'primitives/auxiliary/Triangle.js',
+              'primitives/auxiliary/Rectangle.js',
               'primitives/auxiliary/LateralFaces.js',
               'primitives/Tablut.js',
               // Animations
@@ -78,7 +81,7 @@ serialInclude(['../lib/CGF.js', 'engine/Scene.js', 'engine/SceneGraph.js', 'inte
     // get file name provided in URL, e.g. http://localhost/myproj/?file=myfile.xml
     // or use "demo.xml" as default (assumes files in subfolder "scenes", check MySceneGraph constructor)
 
-    var filename = getUrlVars()['file'] || "tablut.xml";
+    var filename = getUrlVars()['file'] || "dark.xml";
 
     // create and load graph, and associate it to scene.
     // Check console for loading errors

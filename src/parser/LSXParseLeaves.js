@@ -48,18 +48,12 @@ LSXParser.prototype.parseLeaves = function(rootElement) {
     }
 
     // Get the args
-    var stringOfNumbers = null;
-    if (leafType !== 'plane' && leafType !== 'patch' && leafType !== 'terrain' && leafType !== 'vehicle') {
-     stringOfNumbers = this.reader.getString(leafElement, 'args');
-    }
-    if (stringOfNumbers == null && leafType !== 'plane' && leafType !== 'patch' && leafType !== 'terrain' && leafType !== 'vehicle') {
+    stringOfNumbers = this.reader.getString(leafElement, 'args');
+    if (stringOfNumbers == null) {
       return 'LEAF, ' + id + ', must have an args attribute.';
     }
 
-    var stringArray = [];
-    if (stringOfNumbers != null) {
-      stringArray = stringOfNumbers.split(/\s+/);
-    }
+    var stringArray = stringOfNumbers.split(/\s+/);
 
     var scene = this.graph.scene;
 
@@ -83,11 +77,11 @@ LSXParser.prototype.parseLeaves = function(rootElement) {
           return 'LEAF, ' + id + ', ' + leafType + ': f f f i i .';
         }
 
-        var height       = arrayOfNumbers[0];
+        var height = arrayOfNumbers[0];
         var bottomRadius = arrayOfNumbers[1];
-        var topRadius    = arrayOfNumbers[2];
-        var slices       = arrayOfNumbers[3];
-        var stacks       = arrayOfNumbers[4];
+        var topRadius = arrayOfNumbers[2];
+        var slices = arrayOfNumbers[3];
+        var stacks = arrayOfNumbers[4];
 
         nodes[id] = new Cylinder(scene, height, bottomRadius, topRadius, slices, stacks);
         break;
@@ -97,9 +91,9 @@ LSXParser.prototype.parseLeaves = function(rootElement) {
           return 'LEAF, ' + id + ', ' + leafType + ': f i i .';
         }
 
-        var radius       = arrayOfNumbers[0];
+        var radius = arrayOfNumbers[0];
         var tetaSections = arrayOfNumbers[1];
-        var phiSections  = arrayOfNumbers[2];
+        var phiSections = arrayOfNumbers[2];
 
         nodes[id] = new Sphere(scene, radius, tetaSections, phiSections);
         break;
@@ -114,87 +108,6 @@ LSXParser.prototype.parseLeaves = function(rootElement) {
         v3 = [arrayOfNumbers[6], arrayOfNumbers[7], arrayOfNumbers[8]];
 
         nodes[id] = new Triangle(scene, v1, v2, v3);
-        break;
-      case 'plane':
-        var parts = this.reader.getInteger(leafElement, 'parts');
-
-        if (parts == null) {
-          return 'LEAF, ' + id + ', must have a parts attribute with a integer value.';
-        }
-
-        if (parts <= 0) {
-          return 'LEAF, ' + id + ', parts attribute must be greater or equal 1.';
-        }
-
-        nodes[id] = new NURBSPlane(scene, parts);
-        break;
-      case 'patch':
-        var order = this.reader.getInteger(leafElement, 'order');
-        var partsU = this.reader.getInteger(leafElement, 'partsU');
-        var partsV = this.reader.getInteger(leafElement, 'partsV');
-        var controlPoints = [];
-
-        if (order == null) {
-          return 'LEAF, ' + id + ', must have an order attribute with a integer value.';
-        }
-
-        if (order < 1 && order > 3) {
-          return 'LEAF, ' + id + ', order attribute must be between 1 and 3.';
-        }
-
-        if (partsU == null) {
-          return 'LEAF, ' + id + ', must have a partsU attribute with a integer value.';
-        }
-
-        if (partsU <= 0) {
-          return 'LEAF, ' + id + ', partsU attribute must be greater or equal 1.';
-        }
-
-        if (partsV == null) {
-          return 'LEAF, ' + id + ', must have a partsV attribute with a integer value.';
-        }
-
-        if (partsV <= 0) {
-          return 'LEAF, ' + id + ', partsV attribute must be greater or equal 1.';
-        }
-
-        var controlPointsElement = leafElement.getElementsByTagName('controlpoint');
-
-        if (controlPointsElement.length !== Math.pow(order+1,2)) {
-          return 'LEAF, ' + id + ', must have (order+1)^2 control points.';
-        }
-
-        for(var i = 0; i < controlPointsElement.length; i++) {
-          var controlPointElement = controlPointsElement[i];
-
-          if (controlPointElement.attributes.length != 3) {
-            return 'controlpoint, there must be exactly 3 elements: x, y and z.';
-          }
-
-          var controlPoint = [];
-
-          var x = this.reader.getFloat(controlPointElement, 'x');
-          var y = this.reader.getFloat(controlPointElement, 'y');
-          var z = this.reader.getFloat(controlPointElement, 'z');
-
-          controlPoint.push(x);
-          controlPoint.push(y);
-          controlPoint.push(z);
-          controlPoint.push(1);
-
-          controlPoints.push(controlPoint);
-        }
-
-        nodes[id] = new NURBSPatch(scene, order, partsU, partsV, controlPoints);
-        break;
-      case 'terrain':
-        var texture = this.reader.getString(leafElement, 'texture');
-        var heightMap = this.reader.getString(leafElement, 'heightmap');
-
-        nodes[id] = new Terrain(scene, texture, heightMap);
-        break;
-      case 'vehicle':
-        nodes[id] = new Vehicle(scene);
         break;
       default:
         return 'LEAF, ' + id + ', type attribute only accepts 4 primities: rectangle, cylinder, sphere, triangle.';

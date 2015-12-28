@@ -34,7 +34,7 @@ LSXParser.prototype.read = function(rootElement) {
   if (error !== undefined)
     return error;
 
-  error = this.parseAnimations(rootElement);
+  error = this.parseTablut(rootElement);
   if (error !== undefined)
     return error;
 
