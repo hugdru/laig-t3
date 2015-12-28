@@ -5,6 +5,8 @@ function Scene(cgfInterface) {
 
   this.cgfInterface = cgfInterface;
   this.tablut = {};
+
+  this.lastPick = null;
 }
 
 Scene.prototype = Object.create(CGFscene.prototype);
@@ -162,8 +164,7 @@ Scene.prototype.display = function() {
   this.tablut.display();
 };
 
-Scene.prototype.logPicking = function ()
-{
+Scene.prototype.logPicking = function() {
 	if (this.pickMode === false) {
 		if (this.pickResults !== null && this.pickResults.length > 0) {
 			for (var i=0; i< this.pickResults.length; i++) {
@@ -172,10 +173,12 @@ Scene.prototype.logPicking = function ()
 				{
 					var customId = this.pickResults[i][1];
 					console.log("Picked object: " + obj + ", with pick id " + customId);
-          if (obj instanceof King || obj instanceof Pawn || obj instanceof Cell) {
-            console.log("x " + obj.x +" y "+ obj.y);
+          if ((this.lastPick instanceof King || this.lastPick instanceof Pawn) && obj instanceof Cell) {
+            this.lastPick.x = obj.x;
+            this.lastPick.y = obj.y;
           }
 				}
+        this.lastPick = obj;
 			}
 			this.pickResults.splice(0,this.pickResults.length);
 		}
