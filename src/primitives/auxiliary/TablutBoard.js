@@ -5,13 +5,6 @@ function TablutBoard(scene) {
 
   this.board = [];
 
-  //for (var i=0; i<9; i++) {
-    //var line = [];
-    //for (var j=0; j<9; j++) {
-      //line.push(new Cell(scene, j, i));
-    //}
-    //this.board.push(line);
-  //}
   this.board.push([new ExitCell(scene,0,0), new Cell(scene,1,0), new Cell(scene,2,0), new MuscoviteCell(scene,3,0), new MuscoviteCell(scene,4,0), new MuscoviteCell(scene,5,0), new Cell(scene,6,0), new Cell(scene,7,0), new ExitCell(scene,8,0)]);
   this.board.push([new Cell(scene,0,1), new Cell(scene,1,1), new Cell(scene,2,1), new Cell(scene,3,1), new MuscoviteCell(scene,4,1), new Cell(scene,5,1), new Cell(scene,6,1), new Cell(scene,7,1), new Cell(scene,8,1)]);
   this.board.push([new Cell(scene,0,2), new Cell(scene,1,2), new Cell(scene,2,2), new Cell(scene,3,2), new SwedeCell(scene,4,2), new Cell(scene,5,2), new Cell(scene,6,2), new Cell(scene,7,2), new Cell(scene,8,2)]);
