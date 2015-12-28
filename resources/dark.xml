@@ -13,22 +13,30 @@
     <background r="0" g="0.5" b="0" a="1" />
   </ILLUMINATION>
   <LIGHTS>
-    <LIGHT id="light1">
+    <LIGHT id="Light">
       <enable value="1" />
       <position x="3" y="3" z="3" w="1" />
       <ambient r="0.1" g="0.1" b="0.1" a="1" />
       <diffuse r="1" g="1" b="1" a="1" />
       <specular r="0.5" g="0.5" b="0.5" a="1" />
     </LIGHT>
-    <LIGHT id="light2">
-      <enable value="0" />
-      <position x="10" y="10" z="10" w="1" />
-      <ambient r="0.2" g="0.2" b="0.2" a="1" />
-      <diffuse r="0.5" g="0.5" b="0.5" a="1" />
-      <specular r="0.3" g="0.3" b="0.3" a="1" />
-    </LIGHT>
   </LIGHTS>
+  <TABLUT>
+    <SWEDE texture="darkWood" material="darkWood" />
+    <MUSCOVITE texture="darkWood" material= "darkWood"/>
+    <KING texture="darkWood" material="darkWood" />
+    <EXIT texture="darkWood" material="darkWood" />
+    <THRONE texture="darkWood" material="darkWood" />
+    <SWEDECELL texture="darkWood" material="darkWood" />
+    <MUSCOVITECELL texture="darkWood" material="darkWood" />
+    <CELLS texture="darkWood" material="darkWood" />
+    <FRAME texture="darkWood" material="darkWood" />
+  </TABLUT>
   <TEXTURES>
+    <TEXTURE id="darkWood">
+      <file path="textures/darkWood.png" />
+      <amplif_factor s="1" t="1" />
+    </TEXTURE>
   </TEXTURES>
   <MATERIALS>
     <MATERIAL id="default">
@@ -38,19 +46,24 @@
       <ambient r="0.3" g="0.3" b="0.3" a="1" />
       <emission r="0.1" g="0.1" b="0.1" a="1" />
     </MATERIAL>
+    <MATERIAL id="darkWood">
+      <shininess value="5" />
+      <specular r="0.4" g="0.2" b="0" a="1" />
+      <diffuse r="0.4" g="0.2" b="0" a="1" />
+      <ambient r="0.4" g="0.2" b="0" a="1" />
+      <emission r="0.1" g="0.1" b="0.1" a="1" />
+    </MATERIAL>
   </MATERIALS>
   <LEAVES>
-    <LEAF id="leaf" type="sphere" args="0.01 20 20" />
+    <LEAF id="triangle" type="triangle" args="1 2 3 4 5 6 7 8 9" />
   </LEAVES>
-  <animations>
-  </animations>
   <NODES>
-    <ROOT id="scene" />
-    <NODE id="scene">
+    <ROOT id="tablut" />
+    <NODE id="tablut">
       <MATERIAL id="default" />
       <TEXTURE id="null" />
       <DESCENDANTS>
-        <DESCENDANT id="leaf" />
+        <DESCENDANT id="triangle" />
       </DESCENDANTS>
     </NODE>
   </NODES>

@@ -67,7 +67,7 @@ LSXParser.prototype.parseTexturesFile = function(texture, fileArray) {
     return 'invalid value for attribute path of file, must be a string.';
   }
 
-  texture.path = "../scenes/" + texture.path;
+  texture.path = "../resources/" + texture.path;
 };
 
 LSXParser.prototype.parseTexturesAmplif_factor = function(texture, Amplif_factorArray) {
