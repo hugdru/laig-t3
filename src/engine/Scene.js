@@ -172,6 +172,9 @@ Scene.prototype.logPicking = function ()
 				{
 					var customId = this.pickResults[i][1];
 					console.log("Picked object: " + obj + ", with pick id " + customId);
+          if (obj instanceof King || obj instanceof Pawn || obj instanceof Cell) {
+            console.log("x " + obj.x +" y "+ obj.y);
+          }
 				}
 			}
 			this.pickResults.splice(0,this.pickResults.length);

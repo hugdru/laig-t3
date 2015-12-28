@@ -3,7 +3,16 @@ function MainBoard(scene) {
 
   this.scene = scene;
 
-  this.cell = new NURBSPlane(scene, 10);
+  this.board = [];
+
+  for (var i=0; i<9; i++) {
+    var line = [];
+    for (var j=0; j<9; j++) {
+      line.push(new Cell(scene, j, i));
+    }
+    this.board.push(line);
+  }
+
   this.cube = new Cube(this.scene);
 }
 
@@ -16,17 +25,22 @@ MainBoard.prototype.display = function() {
 };
 
 MainBoard.prototype.displayCells = function() {
+  var count = 26;
+
   this.scene.pushMatrix();
 
   this.scene.translate(0.5,0,0.5);
   for (var i=0; i<9; i++) {
-    this.scene.translate(0,0,9);
     for (var j=0; j<9; j++) {
-      this.scene.translate(0,0,-1);
-      this.cell.display();
+      this.scene.registerForPick(count, this.board[i][j]);
+      this.board[i][j].display();
+      count++;
+      this.scene.translate(1,0,0);
     }
-    this.scene.translate(1,0,0);
+    this.scene.translate(-9,0,1);
   }
+
+  this.scene.clearPickRegistration();
 
   this.scene.popMatrix();
 };

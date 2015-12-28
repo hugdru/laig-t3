@@ -60,6 +60,7 @@ serialInclude(['../lib/CGF.js', 'engine/Scene.js', 'engine/SceneGraph.js', 'inte
               'primitives/auxiliary/Triangle.js',
               'primitives/auxiliary/Rectangle.js',
               'primitives/auxiliary/LateralFaces.js',
+              'primitives/auxiliary/Cell.js',
               'primitives/Tablut.js',
               // Animations
               'animations/Animation.js', 'animations/LinearAnimation.js',

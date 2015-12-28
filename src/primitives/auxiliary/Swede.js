@@ -1,6 +1,9 @@
-function Swede(scene, x, y) {
-  Pawn.call(this, scene, x, y);
+function Cell(scene, x, y) {
+  NURBSPlane.call(this, scene, 10);
+
+  this.x = x;
+  this.y = y;
 }
 
-Swede.prototype = Object.create(Pawn.prototype);
-Swede.prototype.constructor = Swede;
+Cell.prototype = Object.create(NURBSPlane.prototype);
+Cell.prototype.constructor = Cell;

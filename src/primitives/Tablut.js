@@ -40,13 +40,12 @@ Tablut.prototype = Object.create(CGFobject.prototype);
 Tablut.prototype.constructor = Tablut;
 
 Tablut.prototype.display = function() {
-  this.mainBoard.display();
-
 	for (i=0; i<this.pieces.length; i++) {
 		this.scene.registerForPick(i+1, this.pieces[i]);
 		this.pieces[i].display();
 	}
 
+  this.mainBoard.display();
 };
 
 Tablut.prototype.setTextureAmplification = function(amplifS, amplifT) {
