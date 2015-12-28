@@ -44,7 +44,3 @@ Cube.prototype.display = function() {
   this.face.display();
   this.scene.popMatrix();
 };
-
-Cube.prototype.setTextureAmplification = function(amplifS, amplifT) {
-  this.cell.setTextureAmplification(amplifS, amplifT);
-};

@@ -169,34 +169,35 @@ Scene.prototype.display = function() {
 Scene.prototype.logPicking = function() {
 	if (this.pickMode === false) {
 		if (this.pickResults !== null && this.pickResults.length > 0) {
-			for (var i=0; i< this.pickResults.length; i++) {
-				var obj = this.pickResults[i][0];
-				if (obj)
-				{
-					        console.log("getAvailableMoves,");
-	        console.log(this.rules.getAvailableMoves(obj.x,obj.y));
-					var customId = this.pickResults[i][1];
-					console.log("Picked object: " + obj + ", with pick id " + customId);
+      for (var i=0; i< this.pickResults.length; i++) {
+        var obj = this.pickResults[i][0];
+        if (obj) {
+          console.log("getAvailableMoves,");
+          console.log(this.rules.getAvailableMoves(obj.x,obj.y));
+          var customId = this.pickResults[i][1];
+          console.log("Picked object: " + obj + ", with pick id " + customId);
           if ((this.lastPick instanceof King || this.lastPick instanceof Pawn) && obj instanceof Cell) {
-            
-	    
-	    var rulesValid = this.rules.commit({x: this.lastPick.x, y:this.lastPick.y}, {x: obj.x, y: obj.y});
-	    if (rulesValid) {
-
-		    this.lastPick.x = obj.x;
-		    this.lastPick.y = obj.y;
-		    console.log("result,");
-		    console.log(rulesValid);
-	    } else {
-		console.log("BAD MOVE");
-		this.lastPick = null;
-	    }
-
+            var rulesValid = this.rules.commit({x: this.lastPick.x, y:this.lastPick.y}, {x: obj.x, y: obj.y});
+            if (rulesValid) {
+              this.lastPick.x = obj.x;
+              this.lastPick.y = obj.y;
+              console.log("result,");
+              console.log(rulesValid);
+              if (rulesValid.deleted && rulesValid.deleted.length > 0) {
+                for (var piece in rulesValid.deleted) {
+                  this.tablut.deletePiece(rulesValid.deleted[piece].x, rulesValid.deleted[piece].y);
+                }
+              }
+            }
+            else {
+              console.log("BAD MOVE");
+              this.lastPick = null;
+            }
           }
-				}
+        }
         this.lastPick = obj;
-			}
-			this.pickResults.splice(0,this.pickResults.length);
-		}
-	}
+      }
+      this.pickResults.splice(0,this.pickResults.length);
+    }
+  }
 };

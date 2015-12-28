@@ -6,6 +6,8 @@ Muscovite.prototype = Object.create(Pawn.prototype);
 Muscovite.prototype.constructor = Muscovite;
 
 Muscovite.prototype.display = function() {
+  this.setTextureAmplification(this.scene.graph.tablut.muscovite.texture.amplifFactor.s, this.scene.graph.tablut.muscovite.texture.amplifFactor.t);
+
   this.scene.graph.tablut.muscovite.material.apply();
   this.scene.graph.tablut.muscovite.texture.bind();
 

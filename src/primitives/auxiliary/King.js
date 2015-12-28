@@ -13,6 +13,8 @@ King.prototype = Object.create(CGFobject.prototype);
 King.prototype.constructor = King;
 
 King.prototype.display = function() {
+  this.setTextureAmplification(this.scene.graph.tablut.king.texture.amplifFactor.s, this.scene.graph.tablut.king.texture.amplifFactor.t);
+
   this.scene.graph.tablut.king.material.apply();
   this.scene.graph.tablut.king.texture.bind();
 
@@ -27,5 +29,5 @@ King.prototype.display = function() {
 };
 
 King.prototype.setTextureAmplification = function(amplifS, amplifT) {
-  this.cell.setTextureAmplification(amplifS, amplifT);
+  this.cylinder.setTextureAmplification(amplifS, amplifT);
 };
