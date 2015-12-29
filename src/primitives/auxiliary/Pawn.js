@@ -6,7 +6,7 @@ function Pawn(scene, x, y) {
   this.x = x;
   this.y = y;
 
-  this.cylinder = new Cylinder(scene, 0.3, 0.3, 0.3, 10, 10);
+  this.cylinder = new Cylinder(scene, 0.3, 0.3, 0.3, 25, 25);
 }
 
 Pawn.prototype = Object.create(CGFobject.prototype);

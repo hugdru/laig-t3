@@ -57,11 +57,11 @@ Interface.prototype.initCreateLights = function() {
     var light = this.scene.lights[lightIndex];
     lightsGroup.add(light, 'enabled').name(light.name).onChange(function(value) {
       var light = this.object;
-      if (light.enabled) {
-        light.setVisible(true);
-      } else {
-        light.setVisible(false);
-      }
+      //if (light.enabled) {
+        //light.setVisible(true);
+      //} else {
+        //light.setVisible(false);
+      //}
     });
   }
 

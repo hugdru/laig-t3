@@ -50,7 +50,7 @@ Scene.prototype.initLights = function() {
 
     if (this.lights[index].enabled) {
       this.lights[index].enable();
-      this.lights[index].setVisible(true);
+      //this.lights[index].setVisible(true);
     } else {
       this.lights[index].disable();
       this.lights[index].setVisible(false);

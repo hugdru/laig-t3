@@ -6,7 +6,7 @@ function King(scene, x, y) {
   this.x = x;
   this.y = y;
 
-  this.cylinder = new Cylinder(scene, 2, 0.5, 0, 10, 10);
+  this.cylinder = new Cylinder(scene, 1, 0.3, 0, 25, 25);
 }
 
 King.prototype = Object.create(CGFobject.prototype);

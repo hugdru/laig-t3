@@ -6,24 +6,31 @@
     <rotation axis="y" angle="0" />
     <rotation axis="z" angle="0" />
     <scale sx="1" sy="1" sz="1" />
-    <reference length="5" />
+    <reference length="0" />
   </INITIALS>
   <ILLUMINATION>
     <ambient r="0" g="0" b="0" a="1" />
-    <background r="0" g="0.5" b="0" a="1" />
+    <background r="0" g="0" b="0" a="1" />
   </ILLUMINATION>
   <LIGHTS>
     <LIGHT id="Light">
       <enable value="1" />
       <position x="9" y="9" z="9" w="1" />
-      <ambient r="0.1" g="0.1" b="0.1" a="1" />
+      <ambient r="0.3" g="0.3" b="0.3" a="1" />
+      <diffuse r="1" g="1" b="1" a="1" />
+      <specular r="0.5" g="0.5" b="0.5" a="1" />
+    </LIGHT>
+    <LIGHT id="Light1">
+      <enable value="1" />
+      <position x="0" y="9" z="9" w="1" />
+      <ambient r="0.3" g="0.3" b="0.3" a="1" />
       <diffuse r="1" g="1" b="1" a="1" />
       <specular r="0.5" g="0.5" b="0.5" a="1" />
     </LIGHT>
   </LIGHTS>
   <TABLUT>
     <SWEDE texture="sweede" material="white" />
-    <MUSCOVITE texture="muscovite" material= "white"/>
+    <MUSCOVITE texture="muscovite" material= "default"/>
     <KING texture="king" material="white" />
     <EXIT texture="exit" material="darkBrown" />
     <THRONE texture="throne" material="default" />
@@ -58,15 +65,15 @@
       <amplif_factor s="1" t="1" />
     </TEXTURE>
     <TEXTURE id="king">
-      <file path="textures/smooth.jpg" />
+      <file path="textures/lightWood.png" />
       <amplif_factor s="1" t="1" />
     </TEXTURE>
     <TEXTURE id="sweede">
-      <file path="textures/metal.png" />
+      <file path="textures/pearl.png" />
       <amplif_factor s="1" t="1" />
     </TEXTURE>
     <TEXTURE id="muscovite">
-      <file path="textures/strange.png" />
+      <file path="textures/blackMate.png" />
       <amplif_factor s="1" t="1" />
     </TEXTURE>
     <TEXTURE id="frame">
@@ -77,9 +84,9 @@
   <MATERIALS>
     <MATERIAL id="default">
       <shininess value="5" />
-      <specular r="0.3" g="0.3" b="0.3" a="1" />
-      <diffuse r="0.3" g="0.3" b="0.3" a="1" />
-      <ambient r="0.3" g="0.3" b="0.3" a="1" />
+      <specular r="0.9" g="0.9" b="0.9" a="1" />
+      <diffuse r="0.9" g="0.9" b="0.9" a="1" />
+      <ambient r="0.9" g="0.9" b="0.9" a="1" />
       <emission r="0.1" g="0.1" b="0.1" a="1" />
     </MATERIAL>
     <MATERIAL id="darkBrown">
