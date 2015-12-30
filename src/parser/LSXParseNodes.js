@@ -83,13 +83,6 @@ LSXParser.prototype.parseNodes = function(rootElement) {
           }
           ++minimumElementCount;
           break;
-        case 'animationref':
-          nodeObject.animations = nodeObject.animations || [];
-          error = this.parseNodesAnimation(nodeObject, elementOfNode);
-          if (error !== undefined) {
-            return 'NODE, ' + id + ', ' + error;
-          }
-          break;
         case 'DESCENDANTS':
           if (nodeObject.hasOwnProperty('descendants')) {
             return 'NODE, ' + id + ', there can only be one DESCENDANTS.';
@@ -322,20 +315,3 @@ LSXParser.prototype.parseNodesScale = function(nodeObject, elementOfNode) {
 
 };
 
-LSXParser.prototype.parseNodesAnimation = function(nodeObject, elementOfNode) {
-
-  if (nodeObject == null || elementOfNode == null) {
-    return 'parseNodesAnimation was expecting valid arguments.';
-  }
-
-  if (elementOfNode.attributes.length != 1) {
-    return 'animationref can only have 1 attribute: id.';
-  }
-
-  var id = this.reader.getString(elementOfNode, 'id');
-  if (id == null) {
-    return 'missing id for animationref.';
-  }
-
-  nodeObject.animations.push(id);
-};
