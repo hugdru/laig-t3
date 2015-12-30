@@ -86,4 +86,3 @@ LSXParser.prototype.parseTexturesAmplif_factor = function(texture, Amplif_factor
     return error;
   }
 };
-

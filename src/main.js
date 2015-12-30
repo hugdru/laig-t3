@@ -43,33 +43,33 @@ function getUrlVars() {
 }
 
 serialInclude(['../lib/CGF.js', 'engine/Scene.js', 'engine/SceneGraph.js', 'interface/Interface.js',
-              'parser/LSXParser.js', 'parser/LSXParserUtils.js',
-              'parser/LSXParseInitials.js', 'parser/LSXParseIllumination.js',
-              'parser/LSXParseLights.js', 'parser/LSXParseTextures.js',
-              'parser/LSXParseMaterials.js', 'parser/LSXParseLeaves.js',
-              'parser/LSXParseNodes.js', 'parser/LSXParseTablut.js',
-              // Primitives
-              'primitives/auxiliary/Sphere.js', 'primitives/auxiliary/Cylinder.js',
-              'primitives/auxiliary/NURBSPlane.js',
-              'primitives/auxiliary/TablutBoard.js', 'primitives/auxiliary/Cube.js',
-              'primitives/auxiliary/King.js', 'primitives/auxiliary/Pawn.js',
-              'primitives/auxiliary/Muscovite.js',
-              'primitives/auxiliary/Swede.js',
-              'primitives/auxiliary/Base.js',
-              'primitives/auxiliary/Triangle.js',
-              'primitives/auxiliary/Rectangle.js',
-              'primitives/auxiliary/LateralFaces.js',
-              'primitives/auxiliary/Cell.js',
-              'primitives/auxiliary/ExitCell.js',
-              'primitives/auxiliary/ThroneCell.js',
-              'primitives/auxiliary/MuscoviteCell.js',
-              'primitives/auxiliary/SwedeCell.js',
-              'primitives/Tablut.js',
-              // Animations
-              'animations/Animation.js', 'animations/LinearAnimation.js',
-              'animations/CircularAnimation.js',
-	      // Rules
-	      'rules/Rules.js',
+  'parser/LSXParser.js', 'parser/LSXParserUtils.js',
+  'parser/LSXParseInitials.js', 'parser/LSXParseIllumination.js',
+  'parser/LSXParseLights.js', 'parser/LSXParseTextures.js',
+  'parser/LSXParseMaterials.js', 'parser/LSXParseLeaves.js',
+  'parser/LSXParseNodes.js', 'parser/LSXParseTablut.js',
+  // Primitives
+  'primitives/auxiliary/Sphere.js', 'primitives/auxiliary/Cylinder.js',
+  'primitives/auxiliary/NURBSPlane.js',
+  'primitives/auxiliary/TablutBoard.js', 'primitives/auxiliary/Cube.js',
+  'primitives/auxiliary/King.js', 'primitives/auxiliary/Pawn.js',
+  'primitives/auxiliary/Muscovite.js',
+  'primitives/auxiliary/Swede.js',
+  'primitives/auxiliary/Base.js',
+  'primitives/auxiliary/Triangle.js',
+  'primitives/auxiliary/Rectangle.js',
+  'primitives/auxiliary/LateralFaces.js',
+  'primitives/auxiliary/Cell.js',
+  'primitives/auxiliary/ExitCell.js',
+  'primitives/auxiliary/ThroneCell.js',
+  'primitives/auxiliary/MuscoviteCell.js',
+  'primitives/auxiliary/SwedeCell.js',
+  'primitives/Tablut.js',
+  // Animations
+  'animations/Animation.js', 'animations/LinearAnimation.js',
+  'animations/CircularAnimation.js',
+  // Rules
+  'rules/Rules.js',
 
   main = function() {
     // Standard application, scene and interface setup

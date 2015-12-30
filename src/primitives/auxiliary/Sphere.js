@@ -2,9 +2,9 @@ function Sphere(scene, radius, tetaSections, phiSections) {
   CGFobject.call(this, scene);
 
   if (scene == null || radius == null || radius <= 0 ||
-      tetaSections == null || tetaSections < 3 || phiSections == null ||
-      phiSections < 2
-     ) {
+    tetaSections == null || tetaSections < 3 || phiSections == null ||
+    phiSections < 2
+  ) {
     throw new Error('Sphere, must have valid arguments.');
   }
 

@@ -1,21 +1,20 @@
 function NURBSPlane(scene, parts) {
   this.parts = parts || 1;
 
-  this.surface = new CGFnurbsSurface(1,1,[0,0,1,1],[0,0,1,1],
-      [
-        [
-          [-0.5, 0.0, -0.5, 1],
-          [0.5, 0.0, -0.5, 1]
-        ],
+  this.surface = new CGFnurbsSurface(1, 1, [0, 0, 1, 1], [0, 0, 1, 1], [
+    [
+      [-0.5, 0.0, -0.5, 1],
+      [0.5, 0.0, -0.5, 1]
+    ],
 
-        [
-          [-0.5, 0.0, 0.5, 1],
-          [0.5, 0.0, 0.5, 1]
-        ]
-      ]);
+    [
+      [-0.5, 0.0, 0.5, 1],
+      [0.5, 0.0, 0.5, 1]
+    ]
+  ]);
 
   getSurfacePoint = function(u, v) {
-    return this.surface.getPoint(u,v);
+    return this.surface.getPoint(u, v);
   };
 
   CGFnurbsObject.call(this, scene, getSurfacePoint, this.parts, this.parts);
@@ -40,7 +39,7 @@ NURBSPlane.prototype.initBuffers = function() {
     e = a / this.parts;
     for (b = 0; b <= this.parts; b++) {
       d = b / this.parts;
-      c = this.surface.getPoint(d,e);
+      c = this.surface.getPoint(d, e);
       this.vertices.push(c[0]);
       this.vertices.push(c[1]);
       this.vertices.push(c[2]);

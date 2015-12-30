@@ -56,9 +56,7 @@ SceneGraph.prototype.display = function(node, inheritedMaterial, inheritedTextur
       node.setTextureAmplification(inheritedMaterial.texture.amplifFactor.s, inheritedMaterial.texture.amplifFactor.t);
     }
     node.display();
-  }
-
-  else {
+  } else {
     var texture = inheritedTexture;
     var material = inheritedMaterial;
 
@@ -73,12 +71,10 @@ SceneGraph.prototype.display = function(node, inheritedMaterial, inheritedTextur
     if (node.texture instanceof CGFtexture) {
       texture = node.texture;
       texture.bind();
-    }
-    else if (node.texture === "clear" && texture instanceof CGFtexture) {
+    } else if (node.texture === "clear" && texture instanceof CGFtexture) {
       texture.unbind();
       texture = "null";
-    }
-    else if (node.texture === "null" && texture instanceof CGFtexture) {
+    } else if (node.texture === "null" && texture instanceof CGFtexture) {
       texture.bind();
     }
 
@@ -95,8 +91,7 @@ SceneGraph.prototype.display = function(node, inheritedMaterial, inheritedTextur
 
     if (inheritedMaterial instanceof CGFappearance) {
       inheritedMaterial.apply();
-    }
-    else {
+    } else {
       this.scene.setDefaultAppearance();
     }
 

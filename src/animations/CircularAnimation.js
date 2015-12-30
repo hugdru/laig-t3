@@ -5,9 +5,9 @@ function CircularAnimation(scene, span, center, radius, startdegree, rotationDeg
   Animation.call(this, scene, span);
 
   if (center == null ||
-      radius == null || radius <= 0 ||
-      startdegree == null || rotationDegree == null
-     ) {
+    radius == null || radius <= 0 ||
+    startdegree == null || rotationDegree == null
+  ) {
     throw new Error('CircularAnimation expecting valid arguments');
   }
 
@@ -20,12 +20,11 @@ function CircularAnimation(scene, span, center, radius, startdegree, rotationDeg
 CircularAnimation.prototype = Object.create(Animation.prototype);
 CircularAnimation.prototype.constructor = CircularAnimation;
 
-CircularAnimation.prototype.buildFunctions = function() {
-};
+CircularAnimation.prototype.buildFunctions = function() {};
 
 CircularAnimation.prototype.updateMatrixes = function(animationNode, deltaTime) {
   if (animationNode == null || deltaTime == null || deltaTime < 0) {
-      throw new Error('updateMatrixes, was expecting a animationNode and a valid deltaTime.');
+    throw new Error('updateMatrixes, was expecting a animationNode and a valid deltaTime.');
   }
 
   animationNode.currentElapsedTime += deltaTime;
@@ -35,8 +34,8 @@ CircularAnimation.prototype.updateMatrixes = function(animationNode, deltaTime) 
 
   mat4.identity(animationNode.translateMatrix);
   mat4.translate(animationNode.translateMatrix, animationNode.translateMatrix,
-                 vec3.fromValues(this.radius * Math.cos(rotateAngle) + this.center.x, this.center.y, -this.radius * Math.sin(rotateAngle) + this.center.z)
-                );
+    vec3.fromValues(this.radius * Math.cos(rotateAngle) + this.center.x, this.center.y, -this.radius * Math.sin(rotateAngle) + this.center.z)
+  );
 
   mat4.identity(animationNode.rotateScaleMatrix);
   mat4.rotateY(animationNode.rotateScaleMatrix, animationNode.rotateScaleMatrix, rotateAngle);

@@ -54,8 +54,7 @@ Animation.prototype.update = function(currentUpdateTime) {
 
 };
 
-Animation.prototype.buildFunctions = function() {
-};
+Animation.prototype.buildFunctions = function() {};
 
 Animation.prototype.run = function(node) {
   this.checkNode(node);

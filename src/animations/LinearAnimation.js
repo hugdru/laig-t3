@@ -10,7 +10,11 @@ LinearAnimation.prototype.constructor = LinearAnimation;
 LinearAnimation.prototype.buildFunctions = function() {
 
   if (this.controlPoints[0].x !== 0 || this.controlPoints[0].y !== 0 || this.controlPoints[0].z !== 0) {
-    this.controlPoints.splice(0, 0, {x:0, y:0, z:0});
+    this.controlPoints.splice(0, 0, {
+      x: 0,
+      y: 0,
+      z: 0
+    });
   }
 
   this.stageLength = this.controlPoints.length - 1;
@@ -64,7 +68,7 @@ LinearAnimation.prototype.buildFunctions = function() {
 
 LinearAnimation.prototype.updateMatrixes = function(animationNode, deltaTime) {
   if (animationNode == null || deltaTime == null || deltaTime < 0) {
-      throw new Error('updateMatrixes, was expecting a animationNode and a valid deltaTime.');
+    throw new Error('updateMatrixes, was expecting a animationNode and a valid deltaTime.');
   }
 
   animationNode.currentElapsedTime += deltaTime;
@@ -103,7 +107,7 @@ LinearAnimation.prototype.updateMatrixes = function(animationNode, deltaTime) {
       mat4.rotateY(animationNode.rotateScaleMatrix, animationNode.rotateScaleMatrix, this.rotations[currentStageIndex]);
     }
   } else {
-      mat4.rotateY(animationNode.rotateScaleMatrix, animationNode.rotateScaleMatrix, this.rotations[currentStageIndex]);
+    mat4.rotateY(animationNode.rotateScaleMatrix, animationNode.rotateScaleMatrix, this.rotations[currentStageIndex]);
   }
   /** End of Rotation **/
 
