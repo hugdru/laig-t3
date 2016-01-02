@@ -5,6 +5,7 @@ function King(scene, x, y) {
 
   this.x = x;
   this.y = y;
+  this.z = 0;
 
   this.cylinder = new Cylinder(scene, 2, 0.5, 0, 10, 10);
 }

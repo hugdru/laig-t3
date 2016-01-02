@@ -5,6 +5,7 @@ function Pawn(scene, x, y) {
 
   this.x = x;
   this.y = y;
+  this.z = 0;
 
   this.cylinder = new Cylinder(scene, 0.3, 0.3, 0.3, 10, 10);
 }

@@ -7,6 +7,11 @@ function Scene(cgfInterface) {
   this.tablut = {};
   this.rules = new Rules();
 
+  var self = this;
+  this.animationsQueue = new AnimationsQueue(function() {self.setPickEnabled = true;});
+
+  this.linearVelocity = 1 / 250;
+
   this.lastPick = null;
 }
 
@@ -185,8 +190,10 @@ Scene.prototype.logPicking = function() {
               y: obj.y
             });
             if (rulesValid) {
-              this.lastPick.x = obj.x;
-              this.lastPick.y = obj.y;
+              this.setPickEnabled(false);
+              var linear = new LinearAnimation(this.lastPick, obj, this.linearVelocity);
+              this.animationsQueue.add(linear);
+
               console.log("result,");
               console.log(rulesValid);
               if (rulesValid.deleted && rulesValid.deleted.length > 0) {

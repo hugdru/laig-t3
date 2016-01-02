@@ -36,7 +36,7 @@ function Rules() {
 
   // Throne
   this.buildings[lastRowIndex / 2] = {};
-  this.buildings[lastColumnIndex / 2] = this.T;
+  this.buildings[lastRowIndex / 2][lastColumnIndex / 2] = this.T;
 
   // Top Exits
   this.buildings[0] = {};
@@ -244,7 +244,7 @@ Rules.prototype.checkFlank = function(position, line, forwardOrBackwards, delete
     }
     var afterAdjacentPiece = this.board[afterAdjacentPiecePosition.y][afterAdjacentPiecePosition.x];
 
-    if ((afterAdjacentPiece && this.isFriendly(afterAdjacentPiece)) || this.existsBuilding(afterAdjacentPiecePosition)) {
+    if (this.isFriendly(afterAdjacentPiece) || (this.existsBuilding(afterAdjacentPiecePosition) && !afterAdjacentPiece)) {
       this.board[adjacentPiecePosition.y][adjacentPiecePosition.x] = "";
       deleted.push(adjacentPiecePosition);
       if (adjacentPiece === this.K) {

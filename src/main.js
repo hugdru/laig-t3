@@ -66,8 +66,7 @@ serialInclude(['../lib/CGF.js', 'engine/Scene.js', 'engine/SceneGraph.js', 'inte
   'primitives/auxiliary/SwedeCell.js',
   'primitives/Tablut.js',
   // Animations
-  'animations/Animation.js', 'animations/LinearAnimation.js',
-  'animations/CircularAnimation.js',
+  'animations/AnimationsQueue.js', 'animations/LinearAnimation.js',
   // Rules
   'rules/Rules.js',
 
