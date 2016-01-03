@@ -209,6 +209,7 @@ Scene.prototype.logPicking = function() {
             if (rulesValid) {
               this.pickingLocked = true;
               var linear = new LinearAnimation(this.lastPick, obj, this.linearVelocity);
+              //var linear = new SlamAnimation(this.lastPick, obj, 3, this.linearVelocity);
               this.animationsQueue.add(linear);
 
               console.log("result,");
