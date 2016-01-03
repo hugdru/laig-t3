@@ -66,7 +66,7 @@ serialInclude(['../lib/CGF.js',
     'primitives/SwedeCell.js',
   // Animations
   'animations/AnimationsQueue.js', 'animations/LinearAnimation.js',
-  'animations/SlamAnimation.js',
+  'animations/SlamAnimation.js', 'animations/CameraAnimation.js',
   // Rules
   'rules/Rules.js',
   // Main Tablut file

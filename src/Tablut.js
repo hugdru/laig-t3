@@ -9,8 +9,6 @@ function Tablut(scene) {
   this.dificulty = 'easy';
 
   this.scene = scene;
-
-  this.init();
 }
 
 Tablut.prototype = Object.create(CGFobject.prototype);

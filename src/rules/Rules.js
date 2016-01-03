@@ -167,10 +167,10 @@ Rules.prototype.commit = function(currentPosition, nextPosition) {
   }
 
   var deleted = [];
-  if (!this.checkFlank(nextPosition, "h", 1, deleted)) return false;
-  if (!this.checkFlank(nextPosition, "h", -1, deleted)) return false;
-  if (!this.checkFlank(nextPosition, "v", 1, deleted)) return false;
-  if (!this.checkFlank(nextPosition, "v", -1, deleted)) return false;
+  if (!this.checkFlank(board, nextPosition, "h", 1, deleted)) return false;
+  if (!this.checkFlank(board, nextPosition, "h", -1, deleted)) return false;
+  if (!this.checkFlank(board, nextPosition, "v", 1, deleted)) return false;
+  if (!this.checkFlank(board, nextPosition, "v", -1, deleted)) return false;
 
   board[currentPosition.y][currentPosition.x] = "";
   board[nextPosition.y][nextPosition.x] = pieceAtCurrentPosition;
