@@ -6,11 +6,11 @@
     <rotation axis="y" angle="0" />
     <rotation axis="z" angle="0" />
     <scale sx="1" sy="1" sz="1" />
-    <reference length="5" />
+    <reference length="0" />
   </INITIALS>
   <ILLUMINATION>
     <ambient r="0" g="0" b="0" a="1" />
-    <background r="0" g="0.5" b="0" a="1" />
+    <background r="0.5" g="0.5" b="0" a="1" />
   </ILLUMINATION>
   <LIGHTS>
     <LIGHT id="Light">
@@ -25,7 +25,7 @@
     <SWEDE texture="sweede" material="white" />
     <MUSCOVITE texture="muscovite" material= "white"/>
     <KING texture="king" material="white" />
-    <EXIT texture="exit" material="darkBrown" />
+    <EXIT texture="exit" material="white" />
     <THRONE texture="throne" material="default" />
     <SWEDECELL texture="swedeCell" material="red" />
     <MUSCOVITECELL texture="muscoviteCell" material="darkBrown" />
@@ -33,16 +33,12 @@
     <FRAME texture="frame" material="white" />
   </TABLUT>
   <TEXTURES>
-    <TEXTURE id="paleStone">
-      <file path="textures/paleStone.png" />
-      <amplif_factor s="1" t="1" />
-    </TEXTURE>
     <TEXTURE id="throne">
-      <file path="textures/strongMetalCell.jpg" />
+      <file path="textures/hellCell.jpg" />
       <amplif_factor s="1" t="1" />
     </TEXTURE>
     <TEXTURE id="exit">
-      <file path="textures/strongCell.png" />
+      <file path="textures/fancyCell.jpg" />
       <amplif_factor s="1" t="1" />
     </TEXTURE>
     <TEXTURE id="cells">
@@ -50,7 +46,7 @@
       <amplif_factor s="1" t="1" />
     </TEXTURE>
     <TEXTURE id="muscoviteCell">
-      <file path="textures/smooth.jpg" />
+      <file path="textures/vintageCell.jpg" />
       <amplif_factor s="1" t="1" />
     </TEXTURE>
     <TEXTURE id="swedeCell">
@@ -58,11 +54,11 @@
       <amplif_factor s="1" t="1" />
     </TEXTURE>
     <TEXTURE id="king">
-      <file path="textures/hammerCell.png" />
+      <file path="textures/brightStone.png" />
       <amplif_factor s="1" t="1" />
     </TEXTURE>
     <TEXTURE id="sweede">
-      <file path="textures/strange.png" />
+      <file path="textures/smooth.jpg" />
       <amplif_factor s="1" t="1" />
     </TEXTURE>
     <TEXTURE id="muscovite">

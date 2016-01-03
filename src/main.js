@@ -87,7 +87,12 @@ serialInclude(['../lib/CGF.js',
     // get file name provided in URL, e.g. http://localhost/myproj/?file=myfile.xml
     // or use "demo.xml" as default (assumes files in subfolder "scenes", check MySceneGraph constructor)
 
-    var filename = getUrlVars()['file'] || scene.scenery + '.xml';
+    var filename;
+    if (filename = getUrlVars()['file']) {
+      scene.scenery = filename.split('.')[0];
+    } else {
+      filename = scene.scenery + '.xml';
+    };
 
     // create and load graph, and associate it to scene.
     // Check console for loading errors

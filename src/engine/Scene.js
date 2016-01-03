@@ -159,6 +159,7 @@ Scene.prototype.restart = function() {
   if (this.scenery !== this.lastScenery) {
     this.graph.isLoaded = false;
     this.cgfInterface.init();
+    this.graph = null;
     new SceneGraph(this.scenery + '.xml', this);
     this.lastScenery = this.scenery;
   } else {
