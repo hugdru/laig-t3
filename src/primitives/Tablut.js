@@ -65,9 +65,12 @@ Tablut.prototype.display = function() {
 
 Tablut.prototype.undo = function() {
   if (this.boardHistory.length > 0) {
+    var currentPiecesInGraveyard = this.piecesInGraveyard();
     this.pieces = this.boardHistory.pop();
+    var piecesInGraveyardAfterUndo = this.piecesInGraveyard();
     this.rules.pop();
-    this.graveyard.undo();
+    for(var i=0; i < (currentPiecesInGraveyard-piecesInGraveyardAfterUndo); i++)
+      this.graveyard.undo();
     if (this.scene.cameraAnimationActive) {
       var cameraAnimation = new CameraAnimation(this.scene.camera, this.scene.cameraSpan);
       this.scene.animationsQueue.add(cameraAnimation);
@@ -95,6 +98,16 @@ Tablut.prototype.saveToHistory = function() {
       boardStatus.push(new Muscovite(this.scene, this.pieces[piece].x, this.pieces[piece].y));
   }
   this.boardHistory.push(boardStatus);
+};
+
+Tablut.prototype.piecesInGraveyard= function() {
+  var piecesInGraveyard = 0;
+  for (var i = 0; i < this.pieces.length; i++) {
+    if (this.pieces[i].x < 0 || this.pieces[i].y < 0) {
+      piecesInGraveyard++;
+    }
+  }
+  return piecesInGraveyard;
 };
 
 Tablut.prototype.setTextureAmplification = function(amplifS, amplifT) {
