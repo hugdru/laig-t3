@@ -21,6 +21,7 @@ Tablut.prototype.init = function() {
   this.mainBoard = new TablutBoard(this.scene);
 
   this.pieces = [];
+  this.boardHistory = [];
 
   this.pieces.push(new King(this.scene, 4, 4));
 
@@ -63,7 +64,8 @@ Tablut.prototype.display = function() {
 };
 
 Tablut.prototype.undo = function() {
-  // To do
+  if (this.boardHistory.length > 0)
+    this.pieces = this.boardHistory.pop();
 };
 
 Tablut.prototype.deletePiece = function(x, y) {
@@ -72,6 +74,19 @@ Tablut.prototype.deletePiece = function(x, y) {
       this.pieces.splice(i, 1);
     }
   }
+};
+
+Tablut.prototype.saveToHistory = function() {
+  var boardStatus = [];
+  for (var piece in this.pieces) {
+    if (this.pieces[piece] instanceof King)
+      boardStatus.push(new King(this.scene, this.pieces[piece].x, this.pieces[piece].y));
+    if (this.pieces[piece] instanceof Swede)
+      boardStatus.push(new Swede(this.scene, this.pieces[piece].x, this.pieces[piece].y));
+    if (this.pieces[piece] instanceof Muscovite)
+      boardStatus.push(new Muscovite(this.scene, this.pieces[piece].x, this.pieces[piece].y));
+  }
+  this.boardHistory.push(boardStatus);
 };
 
 Tablut.prototype.setTextureAmplification = function(amplifS, amplifT) {

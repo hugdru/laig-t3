@@ -220,6 +220,7 @@ Scene.prototype.logPicking = function() {
           var customId = this.pickResults[i][1];
           console.log("Picked object: " + obj + ", with pick id " + customId);
           if ((this.lastPick instanceof King || this.lastPick instanceof Pawn) && obj instanceof Cell) {
+            this.tablut.saveToHistory();
             var rulesValid = this.tablut.rules.commit({
               x: this.lastPick.x,
               y: this.lastPick.y
