@@ -4,16 +4,18 @@ function Scene(cgfInterface) {
   CGFscene.call(this);
 
   this.cgfInterface = cgfInterface;
-  this.tablut = {};
-  this.rules = new Rules();
 
   var self = this;
+
   this.animationsQueue = new AnimationsQueue(function() {
-      self.pickingLocked = false;
+      if (!self.gameEnd) {
+        self.pickingLocked = false;
+      }
       self.lastPick = null;
     }
   );
 
+  this.cameraAnimation = false;
   this.linearVelocity = 1 / 250;
 
   this.lastPick = null;
@@ -33,10 +35,6 @@ Scene.prototype.init = function(application) {
   this.gl.enable(this.gl.DEPTH_TEST);
   this.gl.enable(this.gl.CULL_FACE);
   this.gl.depthFunc(this.gl.LEQUAL);
-
-  this.tablut = new Tablut(this);
-
-  this.setPickEnabled(true);
 };
 
 Scene.prototype.initLights = function() {
@@ -76,7 +74,17 @@ Scene.prototype.initLights = function() {
 
   this.lightsCreated = true;
 
-  this.cgfInterface.initCreateLights();
+  this.cgfInterface.createLightsGui();
+};
+
+Scene.prototype.initTablut = function() {
+  this.tablut = new Tablut(this);
+
+  this.setPickEnabled(true);
+
+  this.tablutCreated = true;
+
+  this.cgfInterface.createTablutGui();
 };
 
 Scene.prototype.initCameras = function() {
@@ -116,6 +124,9 @@ Scene.prototype.onGraphLoaded = function() {
   this.gl.clearColor(this.graph.illumination.background.r, this.graph.illumination.background.g, this.graph.illumination.background.b, this.graph.illumination.background.a);
   // ambient
   this.setGlobalAmbientLight(this.graph.illumination.ambient.r, this.graph.illumination.ambient.g, this.graph.illumination.ambient.b, this.graph.illumination.ambient.a);
+
+  /** TABLUT **/
+  this.initTablut();
 
   /** LIGHTS **/
   this.initLights();
@@ -170,7 +181,9 @@ Scene.prototype.display = function() {
     var root = this.graph.nodes.root;
     this.graph.display(root, root.material, root.material.texture);
 
-    this.tablut.display();
+    if (this.tablutCreated) {
+      this.tablut.display();
+    }
   }
 
 };
@@ -182,11 +195,11 @@ Scene.prototype.logPicking = function() {
         var obj = this.pickResults[i][0];
         if (obj) {
           console.log("getAvailableMoves,");
-          console.log(this.rules.getAvailableMoves(obj.x, obj.y));
+          console.log(this.tablut.rules.getAvailableMoves(obj.x, obj.y));
           var customId = this.pickResults[i][1];
           console.log("Picked object: " + obj + ", with pick id " + customId);
           if ((this.lastPick instanceof King || this.lastPick instanceof Pawn) && obj instanceof Cell) {
-            var rulesValid = this.rules.commit({
+            var rulesValid = this.tablut.rules.commit({
               x: this.lastPick.x,
               y: this.lastPick.y
             }, {
@@ -204,6 +217,11 @@ Scene.prototype.logPicking = function() {
                 for (var piece in rulesValid.deleted) {
                   this.tablut.deletePiece(rulesValid.deleted[piece].x, rulesValid.deleted[piece].y);
                 }
+              }
+
+              if (rulesValid.won) {
+                window.showWinnerGui(rulesValid.won);
+                this.gameEnd = true;
               }
             } else {
               console.log("BAD MOVE");
