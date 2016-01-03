@@ -44,6 +44,7 @@ AnimationsQueue.prototype.update = function(currentUpdateTime) {
   if (allWorkDone && !this.append) {
     this.previousUpdateTime = null;
     this.requestId = null;
+    this.workDone = true;
     if (this.callback) {
       this.callback();
     }

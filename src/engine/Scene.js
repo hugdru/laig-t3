@@ -8,7 +8,11 @@ function Scene(cgfInterface) {
   this.rules = new Rules();
 
   var self = this;
-  this.animationsQueue = new AnimationsQueue(function() {self.setPickEnabled = true;});
+  this.animationsQueue = new AnimationsQueue(function() {
+      self.pickingLocked = false;
+      self.lastPick = null;
+    }
+  );
 
   this.linearVelocity = 1 / 250;
 
@@ -172,7 +176,7 @@ Scene.prototype.display = function() {
 };
 
 Scene.prototype.logPicking = function() {
-  if (this.pickMode === false) {
+  if (this.pickMode === false && !this.pickingLocked) {
     if (this.pickResults !== null && this.pickResults.length > 0) {
       for (var i = 0; i < this.pickResults.length; i++) {
         var obj = this.pickResults[i][0];
@@ -190,7 +194,7 @@ Scene.prototype.logPicking = function() {
               y: obj.y
             });
             if (rulesValid) {
-              this.setPickEnabled(false);
+              this.pickingLocked = true;
               var linear = new LinearAnimation(this.lastPick, obj, this.linearVelocity);
               this.animationsQueue.add(linear);
 
