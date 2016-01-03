@@ -1,5 +1,5 @@
 function LSXParser(sceneGraph) {
-  this.graph  = sceneGraph;
+  this.graph = sceneGraph;
   this.reader = sceneGraph.reader;
 }
 

@@ -7,8 +7,7 @@ function LateralFaces(scene, height, bottomRadius, topRadius, slices, stacks) {
     topRadius == null || topRadius < 0 ||
     topRadius === 0 && bottomRadius === 0 ||
     slices == null || slices < 3 ||
-    stacks == null || stacks < 1)
-    {
+    stacks == null || stacks < 1) {
     throw new Error('LateralFaces, must have valid arguments.');
   }
 

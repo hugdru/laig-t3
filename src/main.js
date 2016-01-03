@@ -42,34 +42,35 @@ function getUrlVars() {
   return vars;
 }
 
-serialInclude(['../lib/CGF.js', 'engine/Scene.js', 'engine/SceneGraph.js', 'interface/Interface.js',
-              'parser/LSXParser.js', 'parser/LSXParserUtils.js',
-              'parser/LSXParseInitials.js', 'parser/LSXParseIllumination.js',
-              'parser/LSXParseLights.js', 'parser/LSXParseTextures.js',
-              'parser/LSXParseMaterials.js', 'parser/LSXParseLeaves.js',
-              'parser/LSXParseNodes.js', 'parser/LSXParseTablut.js',
-              // Primitives
-              'primitives/auxiliary/Sphere.js', 'primitives/auxiliary/Cylinder.js',
-              'primitives/auxiliary/NURBSPlane.js',
-              'primitives/auxiliary/TablutBoard.js', 'primitives/auxiliary/Cube.js',
-              'primitives/auxiliary/King.js', 'primitives/auxiliary/Pawn.js',
-              'primitives/auxiliary/Muscovite.js',
-              'primitives/auxiliary/Swede.js',
-              'primitives/auxiliary/Base.js',
-              'primitives/auxiliary/Triangle.js',
-              'primitives/auxiliary/Rectangle.js',
-              'primitives/auxiliary/LateralFaces.js',
-              'primitives/auxiliary/Cell.js',
-              'primitives/auxiliary/ExitCell.js',
-              'primitives/auxiliary/ThroneCell.js',
-              'primitives/auxiliary/MuscoviteCell.js',
-              'primitives/auxiliary/SwedeCell.js',
-              'primitives/Tablut.js',
-              // Animations
-              'animations/Animation.js', 'animations/LinearAnimation.js',
-              'animations/CircularAnimation.js',
-	      // Rules
-	      'rules/Rules.js',
+serialInclude(['../lib/CGF.js',
+  // Engine
+  'engine/Scene.js', 'engine/SceneGraph.js',
+  // Interface
+  'interface/Interface.js',
+  // Parser
+  'parser/LSXParser.js', 'parser/LSXParserUtils.js',
+  'parser/LSXParseInitials.js', 'parser/LSXParseIllumination.js',
+  'parser/LSXParseLights.js', 'parser/LSXParseTextures.js',
+  'parser/LSXParseMaterials.js', 'parser/LSXParseLeaves.js',
+  'parser/LSXParseNodes.js', 'parser/LSXParseTablut.js',
+  // Primitives
+    // Auxiliary
+    'primitives/auxiliary/Sphere.js', 'primitives/auxiliary/Cylinder.js',
+    'primitives/auxiliary/NURBSPlane.js', 'primitives/auxiliary/Cube.js',
+    'primitives/auxiliary/Base.js', 'primitives/auxiliary/Triangle.js',
+    'primitives/auxiliary/Rectangle.js', 'primitives/auxiliary/LateralFaces.js',
+    // Core
+    'primitives/TablutBoard.js', 'primitives/King.js', 'primitives/Pawn.js',
+    'primitives/Muscovite.js', 'primitives/Swede.js', 'primitives/Cell.js',
+    'primitives/ExitCell.js', 'primitives/ThroneCell.js', 'primitives/MuscoviteCell.js',
+    'primitives/SwedeCell.js',
+  // Animations
+  'animations/AnimationsQueue.js', 'animations/LinearAnimation.js',
+  'animations/SlamAnimation.js',
+  // Rules
+  'rules/Rules.js',
+  // Main Tablut file
+  'Tablut.js',
 
   main = function() {
     // Standard application, scene and interface setup
@@ -87,7 +88,7 @@ serialInclude(['../lib/CGF.js', 'engine/Scene.js', 'engine/SceneGraph.js', 'inte
     // get file name provided in URL, e.g. http://localhost/myproj/?file=myfile.xml
     // or use "demo.xml" as default (assumes files in subfolder "scenes", check MySceneGraph constructor)
 
-    var filename = getUrlVars()['file'] || "dark.xml";
+    var filename = getUrlVars()['file'] || scene.scenery + '.xml';
 
     // create and load graph, and associate it to scene.
     // Check console for loading errors

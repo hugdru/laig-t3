@@ -1,0 +1,120 @@
+<SCENE>
+  <INITIALS>
+    <frustum near="0.1" far="150" />
+    <translation x="0" y="0" z="0" />
+    <rotation axis="x" angle="0" />
+    <rotation axis="y" angle="0" />
+    <rotation axis="z" angle="0" />
+    <scale sx="1" sy="1" sz="1" />
+    <reference length="5" />
+  </INITIALS>
+  <ILLUMINATION>
+    <ambient r="0" g="0" b="0" a="1" />
+    <background r="0" g="0.5" b="0" a="1" />
+  </ILLUMINATION>
+  <LIGHTS>
+    <LIGHT id="Light">
+      <enable value="1" />
+      <position x="9" y="9" z="9" w="1" />
+      <ambient r="0.1" g="0.1" b="0.1" a="1" />
+      <diffuse r="1" g="1" b="1" a="1" />
+      <specular r="0.5" g="0.5" b="0.5" a="1" />
+    </LIGHT>
+  </LIGHTS>
+  <TABLUT>
+    <SWEDE texture="sweede" material="white" />
+    <MUSCOVITE texture="muscovite" material= "white"/>
+    <KING texture="king" material="white" />
+    <EXIT texture="exit" material="darkBrown" />
+    <THRONE texture="throne" material="default" />
+    <SWEDECELL texture="swedeCell" material="red" />
+    <MUSCOVITECELL texture="muscoviteCell" material="darkBrown" />
+    <CELLS texture="cells" material="darkBrown" />
+    <FRAME texture="frame" material="white" />
+  </TABLUT>
+  <TEXTURES>
+    <TEXTURE id="paleStone">
+      <file path="textures/paleStone.png" />
+      <amplif_factor s="1" t="1" />
+    </TEXTURE>
+    <TEXTURE id="throne">
+      <file path="textures/strongMetalCell.jpg" />
+      <amplif_factor s="1" t="1" />
+    </TEXTURE>
+    <TEXTURE id="exit">
+      <file path="textures/strongCell.png" />
+      <amplif_factor s="1" t="1" />
+    </TEXTURE>
+    <TEXTURE id="cells">
+      <file path="textures/simpleCell.jpg" />
+      <amplif_factor s="1" t="1" />
+    </TEXTURE>
+    <TEXTURE id="muscoviteCell">
+      <file path="textures/smooth.jpg" />
+      <amplif_factor s="1" t="1" />
+    </TEXTURE>
+    <TEXTURE id="swedeCell">
+      <file path="textures/cartonCell.jpg" />
+      <amplif_factor s="1" t="1" />
+    </TEXTURE>
+    <TEXTURE id="king">
+      <file path="textures/hammerCell.png" />
+      <amplif_factor s="1" t="1" />
+    </TEXTURE>
+    <TEXTURE id="sweede">
+      <file path="textures/strange.png" />
+      <amplif_factor s="1" t="1" />
+    </TEXTURE>
+    <TEXTURE id="muscovite">
+      <file path="textures/metal.png" />
+      <amplif_factor s="1" t="1" />
+    </TEXTURE>
+    <TEXTURE id="frame">
+      <file path="textures/brightCell.jpg" />
+      <amplif_factor s="1" t="1" />
+    </TEXTURE>
+  </TEXTURES>
+  <MATERIALS>
+    <MATERIAL id="default">
+      <shininess value="5" />
+      <specular r="0.3" g="0.3" b="0.3" a="1" />
+      <diffuse r="0.3" g="0.3" b="0.3" a="1" />
+      <ambient r="0.3" g="0.3" b="0.3" a="1" />
+      <emission r="0.1" g="0.1" b="0.1" a="1" />
+    </MATERIAL>
+    <MATERIAL id="darkBrown">
+      <shininess value="5" />
+      <specular r="0.4" g="0.2" b="0" a="1" />
+      <diffuse r="0.4" g="0.2" b="0" a="1" />
+      <ambient r="0.4" g="0.2" b="0" a="1" />
+      <emission r="0.1" g="0.1" b="0.1" a="1" />
+    </MATERIAL>
+    <MATERIAL id="white">
+      <shininess value="5" />
+      <specular r="1" g="1" b="1" a="1" />
+      <diffuse r="1" g="1" b="1" a="1" />
+      <ambient r="1" g="1" b="1" a="1" />
+      <emission r="1" g="1" b="1" a="1" />
+    </MATERIAL>
+    <MATERIAL id="red">
+      <shininess value="5" />
+      <specular r="0.8" g="0.2" b="0" a="1" />
+      <diffuse r="0.8" g="0.2" b="0" a="1" />
+      <ambient r="0.8" g="0.2" b="0" a="1" />
+      <emission r="0.1" g="0.1" b="0.1" a="1" />
+    </MATERIAL>
+  </MATERIALS>
+  <LEAVES>
+    <LEAF id="triangle" type="triangle" args="1 2 3 4 5 6 7 8 9" />
+  </LEAVES>
+  <NODES>
+    <ROOT id="tablut" />
+    <NODE id="tablut">
+      <MATERIAL id="default" />
+      <TEXTURE id="null" />
+      <DESCENDANTS>
+        <DESCENDANT id="triangle" />
+      </DESCENDANTS>
+    </NODE>
+  </NODES>
+</SCENE>

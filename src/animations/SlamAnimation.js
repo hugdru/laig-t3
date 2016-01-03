@@ -1,7 +1,9 @@
-function LinearAnimation(piece, target, velocity) {
-  if (piece == null || target == null || velocity == null) {
-    throw new Error('LinearAnimation must have 3 arguments: piece, target, velocity.');
+function SlamAnimation(piece, target, height, velocity) {
+  if (piece == null || target == null || height == null || velocity == null) {
+    throw new Error('SlamAnimation must have 3 arguments: piece, target, velocity.');
   }
+
+  this.height = height;
 
   var distanceVector = vec3.fromValues(target.x - piece.x, target.y - piece.y, target.z - piece.z);
   var distance = vec3.length(distanceVector);
@@ -15,7 +17,7 @@ function LinearAnimation(piece, target, velocity) {
   this.elapsedTime = 0;
 }
 
-LinearAnimation.prototype.update = function(deltaTime) {
+SlamAnimation.prototype.update = function(deltaTime) {
 
   this.elapsedTime += deltaTime;
   if (this.elapsedTime >= this.span) {
@@ -25,9 +27,9 @@ LinearAnimation.prototype.update = function(deltaTime) {
     return true;
   }
 
-  this.piece.x = this.piece.x + deltaTime * this.velocityVector[0];
-  this.piece.y = this.piece.y + deltaTime * this.velocityVector[1];
-  this.piece.z = this.piece.z + deltaTime * this.velocityVector[2];
+  this.piece.x += deltaTime * this.velocityVector[0];
+  this.piece.y += deltaTime * this.velocityVector[1];
+  this.piece.z = Math.sin(this.elapsedTime / this.span * Math.PI) * this.height;
 
   return false;
 };

@@ -5,6 +5,7 @@ function Cell(scene, x, y) {
 
   this.x = x;
   this.y = y;
+  this.z = 0;
 }
 
 Cell.prototype = Object.create(CGFobject.prototype);
