@@ -65,7 +65,7 @@
       <amplif_factor s="1" t="1" />
     </TEXTURE>
     <TEXTURE id="king">
-      <file path="textures/lightWood.png" />
+      <file path="textures/smooth.jpg" />
       <amplif_factor s="1" t="1" />
     </TEXTURE>
     <TEXTURE id="sweede">
