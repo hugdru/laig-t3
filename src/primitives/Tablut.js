@@ -17,6 +17,7 @@ Tablut.prototype.constructor = Tablut;
 Tablut.prototype.init = function() {
 
   this.mainBoard = new TablutBoard(this.scene);
+  this.graveyard = new Graveyard(this.scene);
 
   this.pieces = [];
   this.boardHistory = [];
@@ -59,12 +60,14 @@ Tablut.prototype.display = function() {
   }
 
   this.mainBoard.display();
+  this.graveyard.display();
 };
 
 Tablut.prototype.undo = function() {
   if (this.boardHistory.length > 0) {
     this.pieces = this.boardHistory.pop();
     this.rules.pop();
+    this.graveyard.undo();
     if (this.scene.cameraAnimationActive) {
       var cameraAnimation = new CameraAnimation(this.scene.camera, this.scene.cameraSpan);
       this.scene.animationsQueue.add(cameraAnimation);
@@ -75,7 +78,8 @@ Tablut.prototype.undo = function() {
 Tablut.prototype.deletePiece = function(x, y) {
   for (var i = 0; i < this.pieces.length; i++) {
     if (this.pieces[i].x === x && this.pieces[i].y === y) {
-      this.pieces.splice(i, 1);
+      var tomb = this.graveyard.getTomb();
+      this.scene.animationsQueue.add(new SlamAnimation(this.pieces[i], tomb, 3, this.scene.linearVelocity));
     }
   }
 };

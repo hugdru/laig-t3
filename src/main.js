@@ -62,7 +62,7 @@ serialInclude(['../lib/CGF.js',
     'primitives/auxiliary/TablutBoard.js', 'primitives/auxiliary/King.js', 'primitives/auxiliary/Pawn.js',
     'primitives/auxiliary/Muscovite.js', 'primitives/auxiliary/Swede.js', 'primitives/auxiliary/Cell.js',
     'primitives/auxiliary/ExitCell.js', 'primitives/auxiliary/ThroneCell.js', 'primitives/auxiliary/MuscoviteCell.js',
-    'primitives/auxiliary/SwedeCell.js',
+    'primitives/auxiliary/SwedeCell.js', 'primitives/auxiliary/Graveyard.js',
   // Animations
   'animations/AnimationsQueue.js', 'animations/LinearAnimation.js',
   'animations/SlamAnimation.js', 'animations/CameraAnimation.js',
