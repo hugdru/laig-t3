@@ -231,7 +231,6 @@ Scene.prototype.logPicking = function() {
           var customId = this.pickResults[i][1];
           console.log("Picked object: " + obj + ", with pick id " + customId);
           if ((this.lastPick instanceof King || this.lastPick instanceof Pawn) && obj instanceof Cell) {
-            this.tablut.saveToHistory();
             var rulesValid = this.tablut.rules.commit({
               x: this.lastPick.x,
               y: this.lastPick.y
@@ -240,6 +239,7 @@ Scene.prototype.logPicking = function() {
               y: obj.y
             });
             if (rulesValid) {
+              this.tablut.saveToHistory();
               this.pickingLocked = true;
               var linear = new LinearAnimation(this.lastPick, obj, this.linearVelocity);
               if (this.cameraAnimationActive) {
