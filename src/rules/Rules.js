@@ -14,20 +14,22 @@ function Rules() {
 
   this.turn = this.S;
 
-  this.board = [
-    ["", "", "", this.M, this.M, this.M, "", "", ""],
-    ["", "", "", "", this.M, "", "", "", ""],
-    ["", "", "", "", this.S, "", "", "", ""],
-    [this.M, "", "", "", this.S, "", "", "", this.M],
-    [this.M, this.M, this.S, this.S, this.K, this.S, this.S, this.M, this.M],
-    [this.M, "", "", "", this.S, "", "", "", this.M],
-    ["", "", "", "", this.S, "", "", "", ""],
-    ["", "", "", "", this.M, "", "", "", ""],
-    ["", "", "", this.M, this.M, this.M, "", "", ""]
+  this.boardArray = [
+    [
+      ["", "", "", this.M, this.M, this.M, "", "", ""],
+      ["", "", "", "", this.M, "", "", "", ""],
+      ["", "", "", "", this.S, "", "", "", ""],
+      [this.M, "", "", "", this.S, "", "", "", this.M],
+      [this.M, this.M, this.S, this.S, this.K, this.S, this.S, this.M, this.M],
+      [this.M, "", "", "", this.S, "", "", "", this.M],
+      ["", "", "", "", this.S, "", "", "", ""],
+      ["", "", "", "", this.M, "", "", "", ""],
+      ["", "", "", this.M, this.M, this.M, "", "", ""]
+    ]
   ];
 
-  this.boardRowsLength = this.board.length;
-  this.boardColumnsLength = this.board[0].length;
+  this.boardRowsLength = this.boardArray[0].length;
+  this.boardColumnsLength = this.boardArray[0][0].length;
 
   this.buildings = {};
 
@@ -47,9 +49,11 @@ function Rules() {
   this.buildings[lastRowIndex] = {};
   this.buildings[lastRowIndex][0] = this.E;
   this.buildings[lastRowIndex][lastColumnIndex] = this.E;
-};
+}
 
 Rules.prototype.getAvailableMoves = function(x, y) {
+
+  var board = this.boardArray[this.boardArray.length - 1];
 
   if (x == null || y == null) {
     return false;
@@ -64,21 +68,23 @@ Rules.prototype.getAvailableMoves = function(x, y) {
     return false;
   }
 
-  var pieceAtCurrentPosition = this.board[position.y][position.x];
+  var pieceAtCurrentPosition = board[position.y][position.x];
   if (!pieceAtCurrentPosition) {
     return false;
   }
 
   var moves = [];
-  if (!this.getAvailableLineMoves(position, 'h', '+', moves)) return false;
-  if (!this.getAvailableLineMoves(position, 'h', '-', moves)) return false;
-  if (!this.getAvailableLineMoves(position, 'v', '+', moves)) return false;
-  if (!this.getAvailableLineMoves(position, 'v', '-', moves)) return false;
+  if (!this.getAvailableLineMoves(board, position, 'h', '+', moves)) return false;
+  if (!this.getAvailableLineMoves(board, position, 'h', '-', moves)) return false;
+  if (!this.getAvailableLineMoves(board, position, 'v', '+', moves)) return false;
+  if (!this.getAvailableLineMoves(board, position, 'v', '-', moves)) return false;
 
   return moves;
 };
 
 Rules.prototype.commit = function(currentPosition, nextPosition) {
+
+  var board = this.boardArray[this.boardArray.length - 1].slice(0);
 
   if (this.won) {
     return {
@@ -108,8 +114,8 @@ Rules.prototype.commit = function(currentPosition, nextPosition) {
     return false;
   }
 
-  var pieceAtCurrentPosition = this.board[currentPosition.y][currentPosition.x];
-  var pieceAtNextPosition = this.board[nextPosition.y][nextPosition.x];
+  var pieceAtCurrentPosition = board[currentPosition.y][currentPosition.x];
+  var pieceAtNextPosition = board[nextPosition.y][nextPosition.x];
 
   // Check if it is the turn of this piece
   if (!this.checkTurn(pieceAtCurrentPosition)) {
@@ -136,7 +142,7 @@ Rules.prototype.commit = function(currentPosition, nextPosition) {
   do {
     posX += incX;
     posY += incY;
-    if (this.board[posY][posX]) {
+    if (board[posY][posX]) {
       return false;
     }
   } while (posX !== nextPosition.x || posY !== nextPosition.y);
@@ -166,14 +172,25 @@ Rules.prototype.commit = function(currentPosition, nextPosition) {
   if (!this.checkFlank(nextPosition, "v", 1, deleted)) return false;
   if (!this.checkFlank(nextPosition, "v", -1, deleted)) return false;
 
-  this.board[currentPosition.y][currentPosition.x] = "";
-  this.board[nextPosition.y][nextPosition.x] = pieceAtCurrentPosition;
+  board[currentPosition.y][currentPosition.x] = "";
+  board[nextPosition.y][nextPosition.x] = pieceAtCurrentPosition;
   this.turn = (this.turn == this.S) ? this.M : this.S;
+
+  if (!this.won) {
+    this.boardArray.push(board);
+  }
 
   return {
     "won": this.won,
     "deleted": deleted
   };
+};
+
+Rules.prototype.pop = function() {
+  if (this.boardArray.length > 1) {
+    return this.boardArray.pop();
+  }
+  return false;
 };
 
 // Private Methods
@@ -186,27 +203,27 @@ Rules.prototype.isFriendly = function(piece) {
   return (piece === this.turn || (this.turn === this.S && piece === this.K));
 };
 
-Rules.prototype.existsPiece = function(position) {
-  return (this.board[position.y][position.x]);
+Rules.prototype.existsPiece = function(board, position) {
+  return (board[position.y][position.x]);
 };
 
 Rules.prototype.existsBuilding = function(position) {
   return (this.buildings[position.y] && this.buildings[position.y][position.x]);
 };
 
-Rules.prototype.existsPieceOrBuilding = function(position) {
-  return (this.existsBuilding(position) || this.existsPiece(position));
+Rules.prototype.existsPieceOrBuilding = function(board, position) {
+  return (this.existsBuilding(position) || this.existsPiece(board, position));
 };
 
 Rules.prototype.checkBoundaries = function(position) {
   if (position.x < 0 || position.x >= this.boardColumnsLength ||
     position.y < 0 || position.y >= this.boardRowsLength) {
     return false;
-  };
+  }
   return true;
-}
+};
 
-Rules.prototype.checkFlank = function(position, line, forwardOrBackwards, deleted) {
+Rules.prototype.checkFlank = function(board, position, line, forwardOrBackwards, deleted) {
 
   if ((forwardOrBackwards !== 1 && forwardOrBackwards !== -1) || deleted.constructor !== Array) {
     return false;
@@ -232,7 +249,7 @@ Rules.prototype.checkFlank = function(position, line, forwardOrBackwards, delete
     return true;
   }
 
-  var adjacentPiece = this.board[adjacentPiecePosition.y][adjacentPiecePosition.x];
+  var adjacentPiece = board[adjacentPiecePosition.y][adjacentPiecePosition.x];
   if (adjacentPiece && !this.isFriendly(adjacentPiece)) {
 
     var afterAdjacentPiecePosition = {
@@ -242,10 +259,10 @@ Rules.prototype.checkFlank = function(position, line, forwardOrBackwards, delete
     if (!this.checkBoundaries(afterAdjacentPiecePosition)) {
       return true;
     }
-    var afterAdjacentPiece = this.board[afterAdjacentPiecePosition.y][afterAdjacentPiecePosition.x];
+    var afterAdjacentPiece = board[afterAdjacentPiecePosition.y][afterAdjacentPiecePosition.x];
 
     if (this.isFriendly(afterAdjacentPiece) || (this.existsBuilding(afterAdjacentPiecePosition) && !afterAdjacentPiece)) {
-      this.board[adjacentPiecePosition.y][adjacentPiecePosition.x] = "";
+      board[adjacentPiecePosition.y][adjacentPiecePosition.x] = "";
       deleted.push(adjacentPiecePosition);
       if (adjacentPiece === this.K) {
         this.won = this.MS;
@@ -255,7 +272,7 @@ Rules.prototype.checkFlank = function(position, line, forwardOrBackwards, delete
   return true;
 };
 
-Rules.prototype.getAvailableLineMoves = function(position, line, side, moves) {
+Rules.prototype.getAvailableLineMoves = function(board, position, line, side, moves) {
   if ((side !== '+' && side !== '-') || moves.constructor !== Array) {
     return false;
   }
@@ -279,14 +296,14 @@ Rules.prototype.getAvailableLineMoves = function(position, line, side, moves) {
     y: position.y + inc1y
   };
 
-  while (this.checkBoundaries(incrementatedPosition) && !this.existsPieceOrBuilding(incrementatedPosition)) {
+  while (this.checkBoundaries(incrementatedPosition) && !this.existsPieceOrBuilding(board, incrementatedPosition)) {
     moves.push({
       x: incrementatedPosition.x,
       y: incrementatedPosition.y
     });
     incrementatedPosition.x += inc1x;
     incrementatedPosition.y += inc1y;
-  };
+  }
 
   return moves;
 };
