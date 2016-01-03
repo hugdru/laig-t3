@@ -32,7 +32,7 @@ Interface.prototype.createTablutGui = function() {
   tablutGroup.add(this.scene.tablut, 'muscoviteAI', this.scene.tablut.playerOptions);
   tablutGroup.add(this.scene.tablut, 'dificulty', this.scene.tablut.dificultyOptions);
   tablutGroup.add(this.scene, 'scenery');
-  tablutGroup.add(this.scene, 'cameraAnimationActive');
+  tablutGroup.add(this.scene, 'cameraAnimationInterfacePlug');
   tablutGroup.add(this.scene, 'restart');
 
   var TablutActions = this.gui.addFolder('Actions');

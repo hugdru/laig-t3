@@ -1,26 +1,30 @@
-function CameraAnimation(victim, span) {
+function CameraAnimation(camera, span) {
 
-  if (victim == null || span == null) {
-    throw new Error('CameraAnimation must have 2 arguments: victim and span.');
+  if (camera == null || span == null) {
+    throw new Error('CameraAnimation must have 3 arguments: camera, span.');
   }
 
-  this.victim = victim;
+  this.camera = camera;
   this.span = span;
   this.angleIncrementor = Math.PI / this.span;
 
   this.elapsedTime = 0;
-  this.startAngle = this.victim.angle;
 }
 
 CameraAnimation.prototype.update = function(deltaTime) {
 
+  var angle = 0;
+  this.previousTime = this.elapsedTime;
   this.elapsedTime += deltaTime;
+
   if (this.elapsedTime >= this.span) {
-    this.victim.angle = this.startAngle + Math.PI;
+    angle = this.angleIncrementor * (this.span - this.previousTime);
+    this.camera.orbit(CGFcameraAxisID.Y, angle);
     return true;
   }
 
-  this.victim.angle = this.startAngle + (this.elapsedTime / this.span) * Math.PI;
+  angle = this.angleIncrementor * deltaTime;
+  this.camera.orbit(CGFcameraAxisID.Y, angle);
 
   return false;
 };

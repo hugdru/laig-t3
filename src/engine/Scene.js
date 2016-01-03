@@ -18,7 +18,7 @@ function Scene(cgfInterface) {
   this.scenery = 'dark';
   this.lastScenery = this.scenery;
 
-  this.cameraAnimationActive = false;
+  this.cameraAnimationInterfacePlug = false;
   this.linearVelocity = 1 / 250;
   this.cameraSpan = 1000;
 
@@ -150,11 +150,10 @@ Scene.prototype.restart = function() {
   this.gameEnd = false;
   window.hideWinnerGui();
 
-  if (this.cameraAnimationActive) {
-    this.cameraObj = {angle: 0};
-    this.cameraAnimation = new CameraAnimation(this.cameraObj, this.cameraSpan);
+  if (this.cameraAnimationInterfacePlug) {
+    this.cameraAnimationActive = true;
   } else {
-    this.cameraAnimation = null;
+    this.cameraAnimationActive = false;
   }
 
   if (this.scenery !== this.lastScenery) {
@@ -215,9 +214,6 @@ Scene.prototype.display = function() {
     this.graph.display(root, root.material, root.material.texture);
 
     if (this.tablutCreated) {
-      if (this.cameraAnimation) {
-        this.rotate(this.cameraObj.angle, 0, 1, 0);
-      }
       this.tablut.display();
     }
   }
@@ -246,6 +242,10 @@ Scene.prototype.logPicking = function() {
             if (rulesValid) {
               this.pickingLocked = true;
               var linear = new LinearAnimation(this.lastPick, obj, this.linearVelocity);
+              if (this.cameraAnimationActive) {
+                var cameraAnimation = new CameraAnimation(this.camera, this.cameraSpan);
+                this.animationsQueue.add(cameraAnimation);
+              }
               //var linear = new SlamAnimation(this.lastPick, obj, 3, this.linearVelocity);
               this.animationsQueue.add(linear);
               if (this.cameraAnimation) {

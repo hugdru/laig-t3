@@ -65,6 +65,10 @@ Tablut.prototype.undo = function() {
   if (this.boardHistory.length > 0) {
     this.pieces = this.boardHistory.pop();
     this.rules.pop();
+    if (this.scene.cameraAnimationActive) {
+      var cameraAnimation = new CameraAnimation(this.scene.camera, this.scene.cameraSpan);
+      this.scene.animationsQueue.add(cameraAnimation);
+    }
   }
 };
 

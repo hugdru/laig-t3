@@ -30,7 +30,12 @@ AnimationsQueue.prototype.update = function(currentUpdateTime) {
   var deltaTime = currentUpdateTime - this.previousUpdateTime;
 
   var allWorkDone = true;
+  var skipCamera = (this.queue.length !== 1) ? true : false;
   for (var index = 0; index < this.queue.length; ++index) {
+    if (this.queue[index] instanceof CameraAnimation && skipCamera) {
+      allWorkDone = false;
+      continue;
+    }
     var singleWorkDone = this.queue[index].update(deltaTime);
     if (singleWorkDone) {
       this.queue.splice(index, 1);
