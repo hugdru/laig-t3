@@ -40,10 +40,6 @@
     <FRAME texture="frame" material="white" />
   </TABLUT>
   <TEXTURES>
-    <TEXTURE id="paleStone">
-      <file path="textures/paleStone.png" />
-      <amplif_factor s="1" t="1" />
-    </TEXTURE>
     <TEXTURE id="throne">
       <file path="textures/strongMetalCell.jpg" />
       <amplif_factor s="1" t="1" />
