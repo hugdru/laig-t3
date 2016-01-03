@@ -15,6 +15,9 @@ function Scene(cgfInterface) {
     }
   );
 
+  this.scenery = 'dark';
+  this.lastScenery = this.scenery;
+
   this.cameraAnimation = false;
   this.linearVelocity = 1 / 250;
 
@@ -35,6 +38,8 @@ Scene.prototype.init = function(application) {
   this.gl.enable(this.gl.DEPTH_TEST);
   this.gl.enable(this.gl.CULL_FACE);
   this.gl.depthFunc(this.gl.LEQUAL);
+
+  this.tablut = new Tablut(this);
 };
 
 Scene.prototype.initLights = function() {
@@ -78,7 +83,8 @@ Scene.prototype.initLights = function() {
 };
 
 Scene.prototype.initTablut = function() {
-  this.tablut = new Tablut(this);
+
+  this.tablut.init();
 
   this.setPickEnabled(true);
 
@@ -133,6 +139,21 @@ Scene.prototype.onGraphLoaded = function() {
 
   /** TEXTURES **/
   this.enableTextures(true);
+};
+
+Scene.prototype.restart = function() {
+
+  this.animationsQueue.kill();
+  this.pickingLocked = false;
+  this.gameEnd = false;
+  window.hideWinnerGui();
+
+  if (this.scenery !== this.lastScenery) {
+    this.graph.isLoaded = false;
+    this.cgfInterface.init();
+    new SceneGraph(this.scenery + '.xml', this);
+    this.lastScenery = this.scenery;
+  }
 };
 
 Scene.prototype.display = function() {

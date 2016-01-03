@@ -7,7 +7,15 @@ Interface.prototype.constructor = Interface;
 
 Interface.prototype.init = function(application) {
 
-  CGFinterface.prototype.init.call(this, application);
+  if (application) {
+    this.application = application;
+  }
+
+  CGFinterface.prototype.init.call(this, this.application);
+
+  if (this.gui) {
+    this.gui.destroy();
+  }
 
   this.gui = new dat.GUI();
 };
@@ -23,7 +31,8 @@ Interface.prototype.createTablutGui = function() {
   tablutGroup.add(this.scene.tablut, 'sweedeAI', this.scene.tablut.playerOptions);
   tablutGroup.add(this.scene.tablut, 'muscoviteAI', this.scene.tablut.playerOptions);
   tablutGroup.add(this.scene.tablut, 'dificulty', this.scene.tablut.dificultyOptions);
-  tablutGroup.add(this.scene.tablut, 'restart');
+  tablutGroup.add(this.scene, 'scenery');
+  tablutGroup.add(this.scene, 'restart');
 
   this.testTablutActions = {
     cameraAnimation: false,

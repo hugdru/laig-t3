@@ -10,17 +10,13 @@ function Tablut(scene) {
 
   this.scene = scene;
 
-  this.restart();
+  this.init();
 }
 
 Tablut.prototype = Object.create(CGFobject.prototype);
 Tablut.prototype.constructor = Tablut;
 
-Tablut.prototype.restart = function() {
-
-  this.scene.pickingLocked = false;
-  this.scene.gameEnd = false;
-  window.hideWinnerGui();
+Tablut.prototype.init = function() {
 
   this.mainBoard = new TablutBoard(this.scene);
 
