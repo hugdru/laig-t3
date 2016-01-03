@@ -59,18 +59,17 @@ serialInclude(['../lib/CGF.js',
     'primitives/auxiliary/NURBSPlane.js', 'primitives/auxiliary/Cube.js',
     'primitives/auxiliary/Base.js', 'primitives/auxiliary/Triangle.js',
     'primitives/auxiliary/Rectangle.js', 'primitives/auxiliary/LateralFaces.js',
-    // Core
-    'primitives/TablutBoard.js', 'primitives/King.js', 'primitives/Pawn.js',
-    'primitives/Muscovite.js', 'primitives/Swede.js', 'primitives/Cell.js',
-    'primitives/ExitCell.js', 'primitives/ThroneCell.js', 'primitives/MuscoviteCell.js',
-    'primitives/SwedeCell.js',
+    'primitives/auxiliary/TablutBoard.js', 'primitives/auxiliary/King.js', 'primitives/auxiliary/Pawn.js',
+    'primitives/auxiliary/Muscovite.js', 'primitives/auxiliary/Swede.js', 'primitives/auxiliary/Cell.js',
+    'primitives/auxiliary/ExitCell.js', 'primitives/auxiliary/ThroneCell.js', 'primitives/auxiliary/MuscoviteCell.js',
+    'primitives/auxiliary/SwedeCell.js',
   // Animations
   'animations/AnimationsQueue.js', 'animations/LinearAnimation.js',
   'animations/SlamAnimation.js', 'animations/CameraAnimation.js',
   // Rules
   'rules/Rules.js',
   // Main Tablut file
-  'Tablut.js',
+  'primitives/Tablut.js',
 
   main = function() {
     // Standard application, scene and interface setup
