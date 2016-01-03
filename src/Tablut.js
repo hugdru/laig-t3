@@ -62,8 +62,10 @@ Tablut.prototype.display = function() {
 };
 
 Tablut.prototype.undo = function() {
-  if (this.boardHistory.length > 0)
+  if (this.boardHistory.length > 0) {
     this.pieces = this.boardHistory.pop();
+    this.rules.pop();
+  }
 };
 
 Tablut.prototype.deletePiece = function(x, y) {

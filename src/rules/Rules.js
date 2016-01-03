@@ -84,7 +84,7 @@ Rules.prototype.getAvailableMoves = function(x, y) {
 
 Rules.prototype.commit = function(currentPosition, nextPosition) {
 
-  var board = this.boardArray[this.boardArray.length - 1].slice(0);
+  var board = this.getCurrentBoard();
 
   if (this.won) {
     return {
@@ -188,6 +188,7 @@ Rules.prototype.commit = function(currentPosition, nextPosition) {
 
 Rules.prototype.pop = function() {
   if (this.boardArray.length > 1) {
+    this.turn = (this.turn == this.S) ? this.M : this.S;
     return this.boardArray.pop();
   }
   return false;
@@ -306,4 +307,14 @@ Rules.prototype.getAvailableLineMoves = function(board, position, line, side, mo
   }
 
   return moves;
+};
+
+Rules.prototype.getCurrentBoard = function() {
+  var currentBoard = [];
+
+  for (var index = 0; index < this.boardArray[this.boardArray.length - 1].length; ++index) {
+    currentBoard.push(this.boardArray[this.boardArray.length - 1][index].slice(0));
+  }
+
+  return currentBoard;
 };
