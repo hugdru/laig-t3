@@ -29,6 +29,19 @@
       border: 1px solid black;
       opacity: 0.6;
       filter: alpha(opacity=60);
+      z-index: 10;
+    }
+
+    #deaths {
+      position: fixed;
+      top: 0;
+      left: 0;
+      opacity: 0.6;
+      filter: alpha(opacity=60);
+      background-color: #ffffff;
+      border: 1px solid black;
+      z-index: 10;
+      padding-right: 5px;
     }
 
   </style>
@@ -40,7 +53,27 @@
     <h1 id="winnerHeading">none</h1>
   </div>
 
+  <div id="deaths">
+    <h4>Deaths</h4>
+    <p>Swedes: <span id="swedesDeaths">0</span></p>
+    <p>Muscovites: <span id="muscovitesDeaths">0</span></p>
+  </div>
+
   <script>
+
+    function incrementPoints(turn, enemiesKilled) {
+      if (turn === 'Muscovites') {
+        document.getElementById("muscovitesDeaths").innerHTML = parseInt(document.getElementById("muscovitesDeaths").innerHTML) + enemiesKilled;
+      } else {
+        document.getElementById("swedesDeaths").innerHTML = parseInt(document.getElementById("swedesDeaths").innerHTML) + enemiesKilled;
+      }
+    }
+
+    function resetPoints() {
+      document.getElementById("muscovitesDeaths").innerHTML = 0;
+      document.getElementById("swedesDeaths").innerHTML = 0;
+    };
+
     function showWinnerGui(string) {
       var winner = document.getElementById('winner');
 

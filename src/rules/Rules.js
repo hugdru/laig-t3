@@ -318,3 +318,11 @@ Rules.prototype.getCurrentBoard = function() {
 
   return currentBoard;
 };
+
+Rules.prototype.getTurn = function() {
+  if (this.turn === this.M) {
+    return this.MS;
+  } else {
+    return this.SS;
+  }
+};

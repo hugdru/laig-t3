@@ -149,6 +149,7 @@ Scene.prototype.restart = function() {
   this.pickingLocked = false;
   this.gameEnd = false;
   window.hideWinnerGui();
+  window.resetPoints();
 
   if (this.cameraAnimationInterfacePlug) {
     this.cameraAnimationActive = true;
@@ -251,6 +252,10 @@ Scene.prototype.logPicking = function() {
               this.animationsQueue.add(linear);
               if (this.cameraAnimation) {
                 this.animationsQueue.add(this.cameraAnimation);
+              }
+
+              if (rulesValid.deleted && rulesValid.deleted.length > 0) {
+                window.incrementPoints(this.tablut.rules.getTurn(), rulesValid.deleted.length);
               }
 
               console.log("result,");
